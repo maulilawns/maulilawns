@@ -79,6 +79,7 @@ export function Footer() {
               { to: "/packages", label: "Event Packages" },
               { to: "/decor-themes", label: "Decor Themes" },
               { to: "/events", label: "Events We Host" },
+              { to: "/facilities", label: "Facilities" },
               { to: "/gallery", label: "Gallery" },
               { to: "/contact", label: "Contact Us" },
             ].map((l) => (

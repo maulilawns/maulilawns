@@ -1,8 +1,8 @@
 ﻿import { createFileRoute } from "@tanstack/react-router";
-import { Admin } from "@/components/site/admin";
+import { Admin } from "@/components/site/content-studio";
 export const Route = createFileRoute("/admin")({
   head: () => ({
-    meta: [{ title: "Demo Admin | Mauli Lawns" }, { name: "robots", content: "noindex,nofollow" }],
+    meta: [{ title: "Admin | Mauli Lawns" }, { name: "robots", content: "noindex,nofollow" }],
   }),
   component: Admin,
 });

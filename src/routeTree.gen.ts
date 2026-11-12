@@ -15,11 +15,17 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DecorThemesRouteImport } from './routes/decor-themes'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as FacilitiesRouteImport } from './routes/facilities'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as VenuesRouteImport } from './routes/venues'
+import { Route as AdminDashboardRouteImport } from './routes/admin_.dashboard'
+import { Route as AdminGalleryRouteImport } from './routes/admin_.gallery'
+import { Route as AdminLoginRouteImport } from './routes/admin_.login'
+import { Route as AdminSettingsRouteImport } from './routes/admin_.settings'
 import { Route as VenuesSlugRouteImport } from './routes/venues_.$slug'
+import { Route as AdminGalleryCategoriesRouteImport } from './routes/admin_.gallery.categories'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +57,11 @@ const EventsRoute = EventsRouteImport.update({
   path: '/events',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacilitiesRoute = FacilitiesRouteImport.update({
+  id: '/facilities',
+  path: '/facilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -71,10 +82,35 @@ const VenuesRoute = VenuesRouteImport.update({
   path: '/venues',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin_/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/admin_/gallery',
+  path: '/admin/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin_/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin_/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VenuesSlugRoute = VenuesSlugRouteImport.update({
   id: '/venues_/$slug',
   path: '/venues/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminGalleryCategoriesRoute = AdminGalleryCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminGalleryRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -84,11 +120,17 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/decor-themes': typeof DecorThemesRoute
   '/events': typeof EventsRoute
+  '/facilities': typeof FacilitiesRoute
   '/gallery': typeof GalleryRoute
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/venues': typeof VenuesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/gallery': typeof AdminGalleryRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/venues/$slug': typeof VenuesSlugRoute
+  '/admin/gallery/categories': typeof AdminGalleryCategoriesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -97,11 +139,17 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/decor-themes': typeof DecorThemesRoute
   '/events': typeof EventsRoute
+  '/facilities': typeof FacilitiesRoute
   '/gallery': typeof GalleryRoute
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/venues': typeof VenuesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/gallery': typeof AdminGalleryRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/venues/$slug': typeof VenuesSlugRoute
+  '/admin/gallery/categories': typeof AdminGalleryCategoriesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -111,11 +159,17 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/decor-themes': typeof DecorThemesRoute
   '/events': typeof EventsRoute
+  '/facilities': typeof FacilitiesRoute
   '/gallery': typeof GalleryRoute
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/venues': typeof VenuesRoute
+  '/admin_/dashboard': typeof AdminDashboardRoute
+  '/admin_/gallery': typeof AdminGalleryRouteWithChildren
+  '/admin_/login': typeof AdminLoginRoute
+  '/admin_/settings': typeof AdminSettingsRoute
   '/venues_/$slug': typeof VenuesSlugRoute
+  '/admin_/gallery/categories': typeof AdminGalleryCategoriesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,11 +180,17 @@ export interface FileRouteTypes {
     | '/contact'
     | '/decor-themes'
     | '/events'
+    | '/facilities'
     | '/gallery'
     | '/packages'
     | '/privacy'
     | '/venues'
+    | '/admin/dashboard'
+    | '/admin/gallery'
+    | '/admin/login'
+    | '/admin/settings'
     | '/venues/$slug'
+    | '/admin/gallery/categories'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,11 +199,17 @@ export interface FileRouteTypes {
     | '/contact'
     | '/decor-themes'
     | '/events'
+    | '/facilities'
     | '/gallery'
     | '/packages'
     | '/privacy'
     | '/venues'
+    | '/admin/dashboard'
+    | '/admin/gallery'
+    | '/admin/login'
+    | '/admin/settings'
     | '/venues/$slug'
+    | '/admin/gallery/categories'
   id:
     | '__root__'
     | '/'
@@ -152,11 +218,17 @@ export interface FileRouteTypes {
     | '/contact'
     | '/decor-themes'
     | '/events'
+    | '/facilities'
     | '/gallery'
     | '/packages'
     | '/privacy'
     | '/venues'
+    | '/admin_/dashboard'
+    | '/admin_/gallery'
+    | '/admin_/login'
+    | '/admin_/settings'
     | '/venues_/$slug'
+    | '/admin_/gallery/categories'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,10 +238,15 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   DecorThemesRoute: typeof DecorThemesRoute
   EventsRoute: typeof EventsRoute
+  FacilitiesRoute: typeof FacilitiesRoute
   GalleryRoute: typeof GalleryRoute
   PackagesRoute: typeof PackagesRoute
   PrivacyRoute: typeof PrivacyRoute
   VenuesRoute: typeof VenuesRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminGalleryRoute: typeof AdminGalleryRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   VenuesSlugRoute: typeof VenuesSlugRoute
 }
 
@@ -217,6 +294,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EventsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/facilities': {
+      id: '/facilities'
+      path: '/facilities'
+      fullPath: '/facilities'
+      preLoaderRoute: typeof FacilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -245,6 +329,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VenuesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/dashboard': {
+      id: '/admin_/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/gallery': {
+      id: '/admin_/gallery'
+      path: '/admin/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/login': {
+      id: '/admin_/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin_/settings': {
+      id: '/admin_/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/venues_/$slug': {
       id: '/venues_/$slug'
       path: '/venues/$slug'
@@ -252,8 +364,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VenuesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin_/gallery/categories': {
+      id: '/admin_/gallery/categories'
+      path: '/categories'
+      fullPath: '/admin/gallery/categories'
+      preLoaderRoute: typeof AdminGalleryCategoriesRouteImport
+      parentRoute: typeof AdminGalleryRoute
+    }
   }
 }
+
+interface AdminGalleryRouteChildren {
+  AdminGalleryCategoriesRoute: typeof AdminGalleryCategoriesRoute
+}
+
+const AdminGalleryRouteChildren: AdminGalleryRouteChildren = {
+  AdminGalleryCategoriesRoute: AdminGalleryCategoriesRoute,
+}
+
+const AdminGalleryRouteWithChildren = AdminGalleryRoute._addFileChildren(
+  AdminGalleryRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -262,10 +393,15 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   DecorThemesRoute: DecorThemesRoute,
   EventsRoute: EventsRoute,
+  FacilitiesRoute: FacilitiesRoute,
   GalleryRoute: GalleryRoute,
   PackagesRoute: PackagesRoute,
   PrivacyRoute: PrivacyRoute,
   VenuesRoute: VenuesRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminGalleryRoute: AdminGalleryRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   VenuesSlugRoute: VenuesSlugRoute,
 }
 export const routeTree = rootRouteImport

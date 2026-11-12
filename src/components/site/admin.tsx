@@ -9,12 +9,11 @@ const modules = [
   "Packages",
   "Categories",
   "Decor Themes",
-  "Gallery",
   "Homepage Banners",
   "Testimonials",
   "Website Settings",
 ];
-export function Admin() {
+export function LegacyAdmin() {
   const store = useSite();
   const { data } = store;
   const [module, setModule] = useState("Dashboard");

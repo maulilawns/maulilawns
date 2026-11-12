@@ -3,9 +3,13 @@
  * Types + seed data used by the public site and the admin demo.
  */
 
-import heroMain from "@/assets/hero-main.jpg";
-import venueMini from "@/assets/venue-mini.jpg";
-import venueGrand from "@/assets/venue-grand.jpg";
+import venueMini from "@/assets/mini-lawn-ceremony.webp";
+import miniLawnDining from "@/assets/mini-lawn-dining.webp";
+import miniLawnStage from "@/assets/mini-lawn-stage.webp";
+
+import heroMain from "@/assets/home-aerial.webp";
+import venueGrand from "@/assets/grand-lawn-evening.webp";
+import frontGate from "@/assets/front-gate.webp";
 import ctaEvening from "@/assets/cta-evening.jpg";
 import decorRoyal from "@/assets/decor-royal.jpg";
 import decorPastel from "@/assets/decor-pastel.jpg";
@@ -23,11 +27,14 @@ import galleryStage from "@/assets/gallery-stage.jpg";
 import galleryLighting from "@/assets/gallery-lighting.jpg";
 import galleryDining from "@/assets/gallery-dining.jpg";
 
-/** Named asset pool — the admin demo lets you swap images by picking from here. */
+/** Website image pool; the public gallery is managed separately in MySQL. */
 export const IMAGES: Record<string, string> = {
-  "hero-main": heroMain,
   "venue-mini": venueMini,
+  "mini-lawn-dining": miniLawnDining,
+  "mini-lawn-stage": miniLawnStage,
+  "hero-main": heroMain,
   "venue-grand": venueGrand,
+  "front-gate": frontGate,
   "cta-evening": ctaEvening,
   "decor-royal": decorRoyal,
   "decor-pastel": decorPastel,
@@ -44,6 +51,7 @@ export const IMAGES: Record<string, string> = {
   "gallery-stage": galleryStage,
   "gallery-lighting": galleryLighting,
   "gallery-dining": galleryDining,
+
 };
 
 export const IMAGE_KEYS = Object.keys(IMAGES);
@@ -140,7 +148,7 @@ export const seedVenues: Venue[] = [
     idealFor: ["Birthdays", "Baby Showers", "Engagements", "Family Gatherings"],
     amenities: ["Private open-air lawn", "Space for 50–100 guests", "Additional facilities confirmed on inquiry"],
     imageKey: "venue-mini",
-    galleryKeys: ["venue-mini", "decor-pastel", "gallery-dining", "gallery-lighting"],
+    galleryKeys: ["venue-mini", "mini-lawn-dining", "mini-lawn-stage"],
     faqs: [
       { question: "How many guests can the Mini Lawn host?", answer: "The Mini Lawn comfortably seats 50–100 guests for seated functions." },
       { question: "Is decoration included?", answer: "Basic setup is included; decor themes are available separately through our decor partners." },
@@ -332,22 +340,7 @@ export const seedDecorThemes: DecorTheme[] = [
   },
 ];
 
-export const seedGallery: GalleryImage[] = [
-  { id: "g1", imageKey: "venue-grand", category: "Grand Lawn", title: "Grand Lawn at dusk" },
-  { id: "g2", imageKey: "venue-mini", category: "Mini Lawn", title: "Mini Lawn garden ceremony" },
-  { id: "g3", imageKey: "decor-royal", category: "Wedding Decorations", title: "Royal traditional mandap" },
-  { id: "g4", imageKey: "gallery-stage", category: "Stage Setup", title: "Reception stage, gold & ivory" },
-  { id: "g5", imageKey: "gallery-lighting", category: "Lighting", title: "Fairy light canopy" },
-  { id: "g6", imageKey: "decor-pastel", category: "Wedding Decorations", title: "Pastel floral mandap" },
-  { id: "g7", imageKey: "gallery-dining", category: "Events", title: "Banquet table styling" },
-  { id: "g8", imageKey: "decor-golden", category: "Stage Setup", title: "Golden evening reception stage" },
-  { id: "g9", imageKey: "event-wedding", category: "Events", title: "Wedding baraat at golden hour" },
-  { id: "g10", imageKey: "decor-garden", category: "Mini Lawn", title: "Garden engagement arch" },
-  { id: "g11", imageKey: "event-engagement", category: "Events", title: "Ring ceremony moments" },
-  { id: "g12", imageKey: "decor-festive", category: "Lighting", title: "Lanterns & marigold festivity" },
-  { id: "g13", imageKey: "cta-evening", category: "Grand Lawn", title: "Evening celebration glow" },
-  { id: "g14", imageKey: "decor-minimal", category: "Stage Setup", title: "Minimal elegant stage" },
-];
+export const seedGallery: GalleryImage[] = [];
 
 export const seedTestimonials: Testimonial[] = [
   {
@@ -383,8 +376,8 @@ export const seedEventCategories: EventCategory[] = [
 ];
 
 export const seedSettings: SiteSettings = {
-  whatsapp: "919604310054",
-  phone: "+91 96043 10054",
+  whatsapp: "919254245454",
+  phone: "+91 92542 45454",
   email: "",
   address: "Wagholi–Lohegaon Road, In front of Rohan Abhilasha Society, Wagholi, Pune – 412207",
   mapsQuery: "Mauli Lawns, Wagholi Lohegaon Road, Pune 412207",

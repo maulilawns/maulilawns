@@ -36,5 +36,26 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    files: ["src/**/*.{js,jsx}"],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
+      globals: globals.browser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    plugins: { "react-hooks": reactHooks },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      "no-unused-vars": "off",
+    },
+  },
+  {
+    files: ["server/**/*.js"],
+    extends: [js.configs.recommended],
+    languageOptions: { ecmaVersion: 2022, sourceType: "module", globals: globals.node },
+    rules: { "no-unused-vars": "off" },
+  },
   eslintPluginPrettier,
 );

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -13,10 +13,10 @@ import {
   MapPin,
   ChevronLeft,
   ChevronRight,
-  X,
 } from "lucide-react";
 import { useSite, whatsappLink } from "@/data/store";
-import { CATEGORIES, WHY_CHOOSE, formatINR, type Venue } from "@/data/catalog";
+import { WHY_CHOOSE, formatINR, type Venue } from "@/data/catalog";
+import { LiveGallery as Gallery } from "./gallery";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
 import { EnquireButton, FloatingWhatsApp, StickyMobileEnquiry } from "./whatsapp";
@@ -39,13 +39,24 @@ export function Photo({
   name,
   alt,
   className = "",
+  priority = false,
 }: {
   name: string;
   alt: string;
   className?: string;
+  priority?: boolean;
 }) {
   const { img } = useSite();
-  return <img loading="lazy" src={img(name)} alt={alt} className={className} />;
+  const src = img(name);
+  return src ? (
+    <img
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      src={src}
+      alt={alt}
+      className={className}
+    />
+  ) : null;
 }
 export function PageIntro({
   title,
@@ -167,88 +178,7 @@ export function FinalCTA() {
     </section>
   );
 }
-export function Gallery({ preview = false }: { preview?: boolean }) {
-  const { data } = useSite();
-  const [filter, setFilter] = useState("All");
-  const [active, setActive] = useState<number | null>(null);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const trigger = useRef<HTMLButtonElement | null>(null);
-  const images = data.gallery
-    .filter((g) => filter === "All" || g.category === filter)
-    .slice(0, preview ? 6 : undefined);
-  useEffect(() => {
-    if (active !== null) dialog.current?.showModal();
-    else {
-      dialog.current?.close();
-      trigger.current?.focus();
-    }
-  }, [active]);
-  const move = (n: number) =>
-    setActive((a) => (a === null ? null : (a + n + images.length) % images.length));
-  return (
-    <>
-      <div className="filters" aria-label="Gallery filters">
-        {CATEGORIES.map((c) => (
-          <button
-            key={c}
-            aria-pressed={filter === c}
-            onClick={() => {
-              setFilter(c);
-              setActive(null);
-            }}
-          >
-            {c}
-          </button>
-        ))}
-      </div>
-      <div className="masonry">
-        {images.map((g, i) => (
-          <button
-            className="masonry-item img-zoom"
-            key={g.id}
-            onClick={(e) => {
-              trigger.current = e.currentTarget;
-              setActive(i);
-            }}
-          >
-            <Photo name={g.imageKey} alt={g.title} />
-            <span>{g.title} ↗</span>
-          </button>
-        ))}
-      </div>
-      {images.length === 0 && <p>No images in this category yet.</p>}
-      <dialog
-        ref={dialog}
-        className="lightbox"
-        onCancel={() => setActive(null)}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowLeft") move(-1);
-          if (e.key === "ArrowRight") move(1);
-        }}
-      >
-        <button className="lightbox-close" aria-label="Close image" onClick={() => setActive(null)}>
-          <X />
-        </button>
-        {active !== null && images[active] && (
-          <>
-            <Photo name={images[active].imageKey} alt={images[active].title} />
-            <p>
-              {images[active].title} · {active + 1} / {images.length}
-            </p>
-            <div className="lightbox-controls">
-              <button aria-label="Previous image" onClick={() => move(-1)}>
-                <ChevronLeft />
-              </button>
-              <button aria-label="Next image" onClick={() => move(1)}>
-                <ChevronRight />
-              </button>
-            </div>
-          </>
-        )}
-      </dialog>
-    </>
-  );
-}
+export { LiveGallery as Gallery } from "./gallery";
 export function Testimonials() {
   const { data } = useSite();
   const [index, setIndex] = useState(0);
@@ -289,7 +219,12 @@ export function Home() {
       <section className="hero">
         <Photo
           name={slide === 0 ? data.settings.bannerImageKey : "cta-evening"}
-          alt="Floral Indian wedding mandap on a lush lawn at dusk"
+          alt={
+            slide === 0
+              ? "Aerial view of Mauli Lawns with landscaped gardens, venue building and swimming pool"
+              : "Evening wedding celebration under lights"
+          }
+          priority
         />
         <div className="hero-shade" />
         <BotanicalBranch className="hero-botanical" />
@@ -430,26 +365,22 @@ export function Home() {
               <em>Exceptional Beginnings</em>
             </h2>
             <p>{grand.name}</p>
-            <p className="offer-price">
-              {grand.originalPrice && <del>{formatINR(grand.originalPrice)}</del>}{" "}
-              {formatINR(grand.price)}
-            </p>
             <p>{grand.offerLabel}</p>
             <EnquireButton
               interestedIn={`${grand.name} — ${grand.offerLabel}`}
               label="Enquire About This Offer"
             />
           </div>
-          <Photo name="venue-grand" alt="Grand lawn evening reception" />
+          <div className="offer-photo">
+            <Photo name="front-gate" alt="Mauli Lawns illuminated front entrance gate at night" />
+          </div>
           <BotanicalBranch className="offer-branch" />
         </section>
       )}
       <Amenities />
       <section className="section">
         <SectionHeading eyebrow="A GLIMPSE OF THE MAGIC" title="The Mauli" italic="Gallery" />
-        <p className="sample-note">
-          Illustrative demo photography. Actual Mauli Lawns photographs will be added.
-        </p>
+        <p className="sample-note">Photographs from our Mini Lawn.</p>
         <Gallery preview />
         <div className="center">
           <Link to="/gallery" className="text-link">
@@ -543,7 +474,7 @@ export function Venues() {
   );
 }
 export function VenueDetails({ slug }: { slug: string }) {
-  const { data } = useSite();
+  const { data, img } = useSite();
   const v = data.venues.find((v) => v.slug === slug);
   if (!v) return <PageIntro eyebrow="VENUE NOT FOUND" title="Let's find your perfect space." />;
   return (
@@ -573,10 +504,28 @@ export function VenueDetails({ slug }: { slug: string }) {
           </ul>
           <h3>Perfect for</h3>
           <p>{v.idealFor.join(" · ")}</p>
-          <div className="detail-photos">
-            {v.galleryKeys.map((k) => (
-              <Photo key={k} name={k} alt={`${v.name} — ${k.replaceAll("-", " ")}`} />
-            ))}
+          <div className={`detail-photos ${v.id === "v-mini" ? "mini-lawn-photos" : ""}`}>
+            {v.galleryKeys
+              .filter((key) => img(key))
+              .map((k) => (
+                <figure key={k}>
+                  <Photo
+                    name={k}
+                    alt={
+                      v.id === "v-mini"
+                        ? ({
+                            "venue-mini":
+                              "Mini Lawn with pastel balloon backdrop, purple aisle carpet and white ceremony seating",
+                            "mini-lawn-dining":
+                              "Mini Lawn celebration with round dining tables and a pastel balloon stage",
+                            "mini-lawn-stage":
+                              "Mini Lawn garden stage with pastel balloons, white seating and a paved aisle",
+                          }[k] ?? v.name)
+                        : `${v.name} — ${k.replaceAll("-", " ")}`
+                    }
+                  />
+                </figure>
+              ))}
           </div>
           <h3>Frequently asked questions</h3>
           {v.faqs.map((f) => (

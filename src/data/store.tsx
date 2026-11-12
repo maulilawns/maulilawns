@@ -52,25 +52,74 @@ function load(): SiteData {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return seedData;
     const parsed = JSON.parse(raw) as Partial<SiteData>;
-    // Update the previous Grand Lawn capacity in saved demo content.
-    parsed.venues = parsed.venues?.map((venue) =>
-      venue.id === "v-grand" && venue.capacityMin === 200
-        ? {
-            ...venue,
-            capacityMin: 100,
-            faqs: venue.faqs.map((faq) => ({
-              ...faq,
-              answer: faq.answer.replace("200–700", "100–700"),
-            })),
-          }
+    if (parsed.settings) {
+      if (parsed.settings.whatsapp.replace(/\D/g, "") === "919604310054") {
+        parsed.settings.whatsapp = seedSettings.whatsapp;
+      }
+      if (parsed.settings.phone.replace(/\D/g, "") === "919604310054") {
+        parsed.settings.phone = seedSettings.phone;
+      }
+    }
+    // Restore non-gallery image choices cleared during the broader image removal.
+    parsed.venues = (parsed.venues ?? seedVenues).map((item) => {
+      const seed = seedVenues.find((venue) => venue.id === item.id);
+      return {
+        ...item,
+        imageKey: item.imageKey || seed?.imageKey || "",
+        galleryKeys:
+          item.id === "v-grand" && !item.galleryKeys.length
+            ? (seed?.galleryKeys ?? [])
+            : item.galleryKeys,
+      };
+    });
+    parsed.packages = (parsed.packages ?? seedPackages).map((item) => ({
+      ...item,
+      imageKey: item.imageKey || seedPackages.find((seed) => seed.id === item.id)?.imageKey || "",
+    }));
+    parsed.decorThemes = (parsed.decorThemes ?? seedDecorThemes).map((item) => ({
+      ...item,
+      imageKey:
+        item.imageKey || seedDecorThemes.find((seed) => seed.id === item.id)?.imageKey || "",
+    }));
+    parsed.eventCategories = (parsed.eventCategories ?? seedEventCategories).map((item) => ({
+      ...item,
+      imageKey:
+        item.imageKey || seedEventCategories.find((seed) => seed.id === item.id)?.imageKey || "",
+    }));
+    if (parsed.settings?.bannerImageKey === "venue-mini")
+      parsed.settings.bannerImageKey = "hero-main";
+    // Upgrade the original Mini Lawn demo photographs for returning visitors.
+    parsed.venues = (parsed.venues ?? seedVenues).map((venue) =>
+      venue.id === "v-mini" &&
+      JSON.stringify(venue.galleryKeys) ===
+        JSON.stringify(["venue-mini", "decor-pastel", "gallery-dining", "gallery-lighting"])
+        ? { ...venue, galleryKeys: seedVenues.find((item) => item.id === "v-mini")!.galleryKeys }
         : venue,
-    ) ?? seedVenues;
-    parsed.packages = parsed.packages?.map((pkg) =>
-      pkg.id === "p-mini-rental" &&
-      pkg.inclusions.includes("Final facilities confirmed on inquiry")
-        ? { ...pkg, inclusions: seedPackages.find((item) => item.id === "p-mini-rental")!.inclusions }
-        : pkg,
-    ) ?? seedPackages;
+    );
+    // Update the previous Grand Lawn capacity in saved demo content.
+    parsed.venues =
+      parsed.venues?.map((venue) =>
+        venue.id === "v-grand" && venue.capacityMin === 200
+          ? {
+              ...venue,
+              capacityMin: 100,
+              faqs: venue.faqs.map((faq) => ({
+                ...faq,
+                answer: faq.answer.replace("200–700", "100–700"),
+              })),
+            }
+          : venue,
+      ) ?? seedVenues;
+    parsed.packages =
+      parsed.packages?.map((pkg) =>
+        pkg.id === "p-mini-rental" &&
+        pkg.inclusions.includes("Final facilities confirmed on inquiry")
+          ? {
+              ...pkg,
+              inclusions: seedPackages.find((item) => item.id === "p-mini-rental")!.inclusions,
+            }
+          : pkg,
+      ) ?? seedPackages;
     parsed.packages = parsed.packages.map((pkg) => {
       if (pkg.id !== "p-mini-rental" && pkg.id !== "p-grand-rental") return pkg;
       const inclusions = pkg.inclusions.map((item) =>
@@ -148,7 +197,7 @@ export function SiteProvider({ children }: { children: ReactNode }) {
       setEventCategories: (eventCategories) => setData((d) => ({ ...d, eventCategories })),
       setSettings: (settings) => setData((d) => ({ ...d, settings })),
       resetAll: () => setData(seedData),
-      img: (key: string) => IMAGES[key] ?? key,
+      img: (key: string) => IMAGES[key] ?? (/^(https?:\/\/|\/uploads\/)/.test(key) ? key : ""),
       imageKeys: IMAGE_KEYS,
     }),
     [data, isAdmin],

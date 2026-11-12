@@ -1,0 +1,75 @@
+CREATE TABLE IF NOT EXISTS admins (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ username VARCHAR(80) NOT NULL UNIQUE,
+ password_hash VARCHAR(255) NOT NULL,
+ full_name VARCHAR(160) NOT NULL,
+ email VARCHAR(254) NOT NULL,
+ role ENUM('admin') NOT NULL DEFAULT 'admin',
+ is_active BOOLEAN NOT NULL DEFAULT TRUE,
+ session_version INT NOT NULL DEFAULT 1,
+ last_login_at DATETIME NULL,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS gallery_categories (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ name VARCHAR(120) NOT NULL,
+ slug VARCHAR(160) NOT NULL UNIQUE,
+ description TEXT NOT NULL,
+ thumbnail_url VARCHAR(1024) NULL,
+ thumbnail_storage_key VARCHAR(255) NULL,
+ display_order INT NOT NULL DEFAULT 0,
+ is_active BOOLEAN NOT NULL DEFAULT TRUE,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ CONSTRAINT category_order_nonnegative CHECK (display_order >= 0),
+ CONSTRAINT category_active_boolean CHECK (is_active IN (0,1)),
+ CONSTRAINT category_not_all CHECK (LOWER(TRIM(name)) <> 'all'),
+ INDEX category_public (is_active, display_order)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS gallery_images (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ category_id BIGINT UNSIGNED NOT NULL,
+ title VARCHAR(200) NOT NULL,
+ caption TEXT NOT NULL,
+ alt_text VARCHAR(500) NOT NULL,
+ image_url VARCHAR(1024) NOT NULL,
+ image_storage_key VARCHAR(255) NOT NULL UNIQUE,
+ thumbnail_url VARCHAR(1024) NOT NULL,
+ thumbnail_storage_key VARCHAR(255) NOT NULL,
+ original_filename VARCHAR(255) NOT NULL,
+ mime_type VARCHAR(80) NOT NULL,
+ file_size INT UNSIGNED NOT NULL,
+ width INT UNSIGNED NOT NULL,
+ height INT UNSIGNED NOT NULL,
+ is_featured BOOLEAN NOT NULL DEFAULT FALSE,
+ status ENUM('draft','published') NOT NULL DEFAULT 'draft',
+ display_order INT NOT NULL DEFAULT 0,
+ uploaded_by BIGINT UNSIGNED NOT NULL,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ FOREIGN KEY (category_id) REFERENCES gallery_categories(id) ON DELETE RESTRICT,
+ FOREIGN KEY (uploaded_by) REFERENCES admins(id) ON DELETE RESTRICT,
+ CONSTRAINT image_order_nonnegative CHECK (display_order >= 0),
+ CONSTRAINT image_dimensions_positive CHECK (width > 0 AND height > 0 AND file_size > 0),
+ CONSTRAINT image_featured_boolean CHECK (is_featured IN (0,1)),
+ INDEX image_public (status, category_id, display_order),
+ INDEX image_recent (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS login_attempts (
+ bucket CHAR(64) PRIMARY KEY,
+ failures INT NOT NULL DEFAULT 0,
+ reset_at DATETIME NOT NULL,
+ INDEX login_expiry (reset_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS storage_cleanup (
+ storage_key VARCHAR(255) PRIMARY KEY,
+ created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS sessions (
+ session_id VARCHAR(128) COLLATE utf8mb4_bin NOT NULL PRIMARY KEY,
+ expires INT UNSIGNED NOT NULL,
+ data MEDIUMTEXT COLLATE utf8mb4_bin,
+ INDEX session_expiration (expires)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

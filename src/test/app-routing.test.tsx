@@ -1,4 +1,4 @@
-﻿import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { describe, expect, it } from "vitest";
 import { routeTree } from "@/routeTree.gen";
@@ -15,9 +15,15 @@ describe("Public and admin navigation", () => {
     "/decor-themes",
     "/events",
     "/gallery",
+    "/facilities",
     "/contact",
     "/privacy",
     "/admin",
+    "/admin/login",
+    "/admin/dashboard",
+    "/admin/gallery",
+    "/admin/gallery/categories",
+    "/admin/settings",
   ];
   it.each(paths)("resolves %s to its own page", (path) => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
@@ -28,14 +34,14 @@ describe("Public and admin navigation", () => {
   });
   it("encodes selected inquiry details in WhatsApp link", () => {
     const url = new URL(
-      whatsappLink("919604310054", "Mauli Grand Lawn", {
+      whatsappLink("919254245454", "Mauli Grand Lawn", {
         eventType: "Wedding & reception",
         eventDate: "2027-02-12",
         guests: "500",
       }),
     );
     expect(url.hostname).toBe("wa.me");
-    expect(url.pathname).toBe("/919604310054");
+    expect(url.pathname).toBe("/919254245454");
     const message = url.searchParams.get("text");
     for (const detail of ["Mauli Grand Lawn", "Wedding & reception", "2027-02-12", "500"])
       expect(message).toContain(detail);

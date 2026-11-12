@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { to: "/venues", label: "Our Venues" },
   { to: "/packages", label: "Event Packages" },
   { to: "/events", label: "Events We Host" },
+  { to: "/facilities", label: "Facilities" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact Us" },
 ];

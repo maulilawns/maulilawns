@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Gallery, PageIntro } from "@/components/site/pages";
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -6,8 +6,7 @@ export const Route = createFileRoute("/gallery")({
       { title: "Gallery | Mauli Lawns" },
       {
         name: "description",
-        content:
-          "Explore sample wedding, lawn, lighting and stage inspiration for your celebration.",
+        content: "Explore photographs from Mauli Lawns and our Mini Lawn celebrations.",
       },
     ],
   }),
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/gallery")({
       <PageIntro
         eyebrow="A GLIMPSE OF THE MAGIC"
         title="Moments, beautifully framed."
-        description="Illustrative demo photography. Actual Mauli Lawns photographs will be added."
+        description="Photographs from our Mini Lawn."
       />
       <section className="section">
         <Gallery />

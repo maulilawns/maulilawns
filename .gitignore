@@ -32,3 +32,11 @@ dist-ssr
 *.sw?
 
 .npm-cache/
+
+# Private runtime configuration and persistent development uploads
+.env
+.env.*
+!.env.example
+.data/
+playwright-report/
+test-results/

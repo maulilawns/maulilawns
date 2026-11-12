@@ -124,7 +124,7 @@ function RootShell({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": ["LocalBusiness", "EventVenue"],
               name: "Mauli Lawns",
-              telephone: "+919604310054",
+              telephone: "+919254245454",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Wagholi-Lohegaon Road, In front of Rohan Abhilasha Society",
