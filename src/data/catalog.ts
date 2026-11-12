@@ -122,7 +122,7 @@ export interface SiteSettings {
   bannerImageKey: string;
 }
 
-export const CATEGORIES = ["All", "Mini Lawn", "Grand Lawn", "Wedding Decorations", "Stage Setup", "Lighting", "Events"];
+export const CATEGORIES = ["All", "Mini Lawn", "Grand Lawn", "Wedding Decorations", "Stage Setup", "Events"];
 
 export const seedVenues: Venue[] = [
   {
@@ -152,7 +152,7 @@ export const seedVenues: Venue[] = [
     slug: "grand-lawn",
     name: "Mauli Grand Lawn",
     tagline: "Grand weddings on a sweeping green stage",
-    capacityMin: 200,
+    capacityMin: 100,
     capacityMax: 700,
     price: 71000,
     originalPrice: 151000,
@@ -174,7 +174,7 @@ export const seedVenues: Venue[] = [
     imageKey: "venue-grand",
     galleryKeys: ["venue-grand", "gallery-stage", "gallery-lighting", "decor-royal", "gallery-dining"],
     faqs: [
-      { question: "How many guests can the Grand Lawn host?", answer: "The Grand Lawn hosts 200–700 guests, seated or in flowing layouts." },
+      { question: "How many guests can the Grand Lawn host?", answer: "The Grand Lawn hosts 100–700 guests, seated or in flowing layouts." },
       { question: "What is the Special Opening Offer?", answer: "The venue rental is ₹1,51,000 — currently available at a Special Opening Offer of ₹71,000." },
       { question: "Is there power backup?", answer: "Yes, a generator provides full power backup throughout your event." },
       { question: "Can we arrange catering?", answer: "A kitchen setup is available on-site; catering can be arranged through vendors of your choice." },
@@ -188,7 +188,17 @@ export const seedPackages: Package[] = [
     category: "venue",
     name: "Mini Lawn Venue Rental",
     description: "Venue rental of the intimate Mauli Mini Lawn for your celebration.",
-    inclusions: ["Private Mini Lawn rental", "Space for 50–100 guests", "Final facilities confirmed on inquiry"],
+    inclusions: [
+      "Lawn rental (timings confirmed by team)",
+      "500 sq. ft. stage",
+      "1 speaker & 1 microphone",
+      "Two changing rooms",
+      "Chairs and tables",
+      "Kitchen area — 500 sq. ft.",
+      "Separate washrooms available",
+      "Water available",
+      "Generator power backup",
+    ],
     price: 25000,
     imageKey: "venue-mini",
   },
@@ -198,12 +208,15 @@ export const seedPackages: Package[] = [
     name: "Grand Lawn Venue Rental",
     description: "Venue rental of the flagship Mauli Grand Lawn with the listed facilities.",
     inclusions: [
+      "Guest capacity: 100–700 + 200 additional floating guests",
       "Lawn rental (timings confirmed by team)",
       "500 sq. ft. stage",
       "4 speakers & 2 microphones",
       "Two changing rooms",
       "Chairs and tables",
-      "Kitchen setup",
+      "Kitchen area — 500 sq. ft.",
+      "Separate washrooms available",
+      "Water available",
       "Generator power backup",
     ],
     price: 71000,
@@ -386,7 +399,8 @@ export const WHY_CHOOSE = [
   { title: "Stage and Sound Facilities", description: "A 500 sq. ft. stage with speakers and microphones ready for your programme." },
   { title: "Bride and Groom Changing Rooms", description: "Private, comfortable changing rooms for the couple and family." },
   { title: "Power Backup", description: "Generator backup keeps your celebration bright, whatever happens." },
-  { title: "Kitchen Facilities", description: "On-site kitchen setup that makes catering arrangements simple." },
+  { title: "Kitchen Area", description: "On-site kitchen setup that makes catering arrangements simple." },
+  { title: "Villa & Swimming Pool", description: "A welcoming villa with a swimming pool for relaxing and spending time with family around your celebration." },
 ];
 
 /** Indian Rupee formatting, e.g. ₹71,000 */

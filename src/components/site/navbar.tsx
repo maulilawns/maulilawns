@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { to: "/about", label: "About Us" },
   { to: "/venues", label: "Our Venues" },
   { to: "/packages", label: "Event Packages" },
-  { to: "/decor-themes", label: "Decor Themes" },
   { to: "/events", label: "Events We Host" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact Us" },

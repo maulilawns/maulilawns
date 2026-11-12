@@ -52,6 +52,48 @@ function load(): SiteData {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return seedData;
     const parsed = JSON.parse(raw) as Partial<SiteData>;
+    // Update the previous Grand Lawn capacity in saved demo content.
+    parsed.venues = parsed.venues?.map((venue) =>
+      venue.id === "v-grand" && venue.capacityMin === 200
+        ? {
+            ...venue,
+            capacityMin: 100,
+            faqs: venue.faqs.map((faq) => ({
+              ...faq,
+              answer: faq.answer.replace("200–700", "100–700"),
+            })),
+          }
+        : venue,
+    ) ?? seedVenues;
+    parsed.packages = parsed.packages?.map((pkg) =>
+      pkg.id === "p-mini-rental" &&
+      pkg.inclusions.includes("Final facilities confirmed on inquiry")
+        ? { ...pkg, inclusions: seedPackages.find((item) => item.id === "p-mini-rental")!.inclusions }
+        : pkg,
+    ) ?? seedPackages;
+    parsed.packages = parsed.packages.map((pkg) => {
+      if (pkg.id !== "p-mini-rental" && pkg.id !== "p-grand-rental") return pkg;
+      const inclusions = pkg.inclusions.map((item) =>
+        item === "Kitchen setup"
+          ? "Kitchen area — 500 sq. ft."
+          : pkg.id === "p-mini-rental" && item === "4 speakers & 2 microphones"
+            ? "1 speaker & 1 microphone"
+            : item,
+      );
+      if (!inclusions.includes("Separate washrooms available")) {
+        inclusions.push("Separate washrooms available");
+      }
+      if (!inclusions.includes("Water available")) {
+        inclusions.push("Water available");
+      }
+      if (
+        pkg.id === "p-grand-rental" &&
+        !inclusions.includes("Guest capacity: 100–700 + 200 additional floating guests")
+      ) {
+        inclusions.unshift("Guest capacity: 100–700 + 200 additional floating guests");
+      }
+      return { ...pkg, inclusions };
+    });
     return { ...seedData, ...parsed, settings: { ...seedSettings, ...(parsed.settings ?? {}) } };
   } catch {
     return seedData;

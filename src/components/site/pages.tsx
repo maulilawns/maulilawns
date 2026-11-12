@@ -9,6 +9,7 @@ import {
   DoorOpen,
   Zap,
   Utensils,
+  House,
   MapPin,
   ChevronLeft,
   ChevronRight,
@@ -80,11 +81,6 @@ export function VenueSection({ venue, index = 0 }: { venue: Venue; index?: numbe
             {venue.capacityMin}–{venue.capacityMax}
             <small>GUESTS</small>
           </span>
-          <span>
-            {venue.originalPrice && <del>{formatINR(venue.originalPrice)}</del>}
-            {formatINR(venue.price)}
-            <small>{venue.offerLabel || "VENUE RENTAL"}</small>
-          </span>
         </div>
         <Link className="text-link" to="/venues/$slug" params={{ slug: venue.slug }}>
           Explore the venue <ArrowRight size={16} />
@@ -95,7 +91,7 @@ export function VenueSection({ venue, index = 0 }: { venue: Venue; index?: numbe
   );
 }
 export function Amenities() {
-  const icons = [Leaf, Car, Mic, DoorOpen, Zap, Utensils];
+  const icons = [Leaf, Car, Mic, DoorOpen, Zap, Utensils, House];
   return (
     <section className="section amenities">
       <SectionHeading
@@ -646,8 +642,6 @@ export function Packages() {
                   {p.popular && <p className="eyebrow">SPECIAL OPENING OFFER</p>}
                   <h3>{p.name}</h3>
                   <p>{p.description}</p>
-                  {p.originalPrice && <del>{formatINR(p.originalPrice)}</del>}
-                  <h2>{formatINR(p.price)}</h2>
                   <ul className="inclusions">
                     {p.inclusions.map((i) => (
                       <li key={i}>✓ {i}</li>
@@ -790,6 +784,7 @@ export function Contact() {
               {data.eventCategories.map((e) => (
                 <option key={e.id}>{e.name}</option>
               ))}
+              <option value="Other">Other</option>
             </select>
           </label>
           <label>
