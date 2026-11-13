@@ -26,7 +26,8 @@
     "build:hostinger": "node scripts/build-hostinger.mjs",
     "start:hostinger": "node .output/server/index.mjs",
     "build:hostinger:site": "node scripts/build-hostinger.mjs --site",
-    "start": "node server.js"
+    "start": "node server.js",
+    "postinstall": "node scripts/hostinger-install.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",
