@@ -5,16 +5,7 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { useSite, whatsappLink } from "@/data/store";
 
-const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
-  { to: "/venues", label: "Our Venues" },
-  { to: "/packages", label: "Event Packages" },
-  { to: "/events", label: "Events We Host" },
-  { to: "/facilities", label: "Facilities" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/contact", label: "Contact Us" },
-];
+import { NAV_LINKS } from "@/data/navigation";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -69,31 +60,25 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled || pathname !== "/" ? "nav-glass py-2" : "nav-glass py-4"
-        }`}
+        className="fixed inset-x-0 top-0 z-50 nav-glass py-4"
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex shrink-0 items-center gap-3" aria-label="Mauli Lawns home">
             <img
               src={logo}
               alt="Mauli Lawns logo — gold botanical wreath with ML monogram"
-              className={`w-auto transition-all duration-500 ${scrolled || pathname !== "/" ? "h-10" : "h-14"} ${
-                scrolled || pathname !== "/" ? "" : "drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
-              }`}
+              className="h-14 w-auto"
             />
             <span
-              className={`hidden flex-col leading-tight sm:flex lg:hidden xl:flex ${
-                scrolled || pathname !== "/" ? "" : "text-ivory"
-              }`}
+              className="hidden flex-col leading-tight sm:flex lg:hidden xl:flex"
             >
               <span
-                className={`font-display text-lg font-semibold tracking-wide ${scrolled || pathname !== "/" ? "text-navy-deep" : "text-ivory"}`}
+                className="font-display text-lg font-semibold tracking-wide text-navy-deep"
               >
                 Mauli Lawns
               </span>
               <span
-                className={`text-[0.6rem] uppercase tracking-[0.28em] ${scrolled || pathname !== "/" ? "text-gold-deep" : "text-gold-soft"}`}
+                className="text-[0.6rem] uppercase tracking-[0.28em] text-gold-deep"
               >
                 Wedding & Event Venue
               </span>
@@ -105,7 +90,7 @@ export function Navbar() {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`link-gold text-[0.72rem] font-semibold uppercase tracking-[0.16em] transition-colors ${
+                className={`link-gold text-[0.875rem] font-semibold tracking-[0.16em] transition-colors ${
                   scrolled || pathname !== "/"
                     ? "text-navy-deep hover:text-gold-deep"
                     : "text-black hover:text-gold-deep"
@@ -152,11 +137,7 @@ export function Navbar() {
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={menuOpen}
-              className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors lg:hidden ${
-                scrolled || pathname !== "/"
-                  ? "border-navy/20 text-navy-deep"
-                  : "border-ivory/40 text-ivory"
-              }`}
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-navy/20 text-navy-deep transition-colors lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>

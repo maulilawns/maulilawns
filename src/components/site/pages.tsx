@@ -15,7 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useSite, whatsappLink } from "@/data/store";
-import { WHY_CHOOSE, formatINR, type Venue } from "@/data/catalog";
+import { WHY_CHOOSE, formatINR, formatPhone, type Venue } from "@/data/catalog";
 import { LiveGallery as Gallery } from "./gallery";
 import { Navbar } from "./navbar";
 import { Footer } from "./footer";
@@ -24,7 +24,7 @@ import { BotanicalBranch, Reveal, SectionHeading } from "./reveal";
 
 export function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className="public-site">
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -32,7 +32,7 @@ export function PublicLayout({ children }: { children: ReactNode }) {
       <main id="main">{children}</main>
       <Footer />
       <FloatingWhatsApp />
-    </>
+    </div>
   );
 }
 export function Photo({
@@ -145,7 +145,7 @@ export function Location() {
         >
           Get directions <ArrowRight size={16} />
         </a>
-        <a href={`tel:${data.settings.phone.replace(/\s/g, "")}`}>{data.settings.phone}</a>
+        <a href={`tel:${data.settings.phone.replace(/\s/g, "")}`}>{formatPhone(data.settings.phone)}</a>
       </div>
       <iframe
         loading="lazy"
@@ -283,14 +283,14 @@ export function Home() {
       <div className="promise-strip">
         <span>TWO DISTINCTIVE LAWNS</span>
         <b>✦</b>
-        <span>50–700 GUESTS</span>
+        <span>100–700 GUESTS + 200 FLOATING GUESTS</span>
         <b>✦</b>
         <span>ENDLESS BEAUTIFUL POSSIBILITIES</span>
       </div>
       <section id="our-story" className="section story">
         <div className="story-photos">
           <Photo name="venue-mini" alt="Intimate garden lawn with floral decor" />
-          <Photo name="decor-pastel" alt="Pastel floral wedding decor" />
+          <Photo name="mini-lawn-stage" alt="Mauli Mini Lawn stage with pastel balloon decor and garden seating" />
           <span className="photo-seal">
             Made for
             <br />
@@ -312,7 +312,7 @@ export function Home() {
           </p>
           <div className="story-highlights">
             <span>Two Beautiful Lawns</span>
-            <span>50–700 Guests</span>
+            <span>100–700 Guests + 200 Floating Guests</span>
             <span>Convenient Wagholi Location</span>
           </div>
           <Link to="/about" className="text-link">
@@ -380,7 +380,7 @@ export function Home() {
       <Amenities />
       <section className="section">
         <SectionHeading eyebrow="A GLIMPSE OF THE MAGIC" title="The Mauli" italic="Gallery" />
-        <p className="sample-note">Photographs from our Mini Lawn.</p>
+        <p className="sample-note">Photographs of our lawns, celebrations and garden spaces.</p>
         <Gallery preview />
         <div className="center">
           <Link to="/gallery" className="text-link">
@@ -683,7 +683,7 @@ export function Contact() {
           </h2>
           <p>{data.settings.address}</p>
           <a className="contact-phone" href={`tel:${data.settings.phone.replace(/\s/g, "")}`}>
-            {data.settings.phone}
+            {formatPhone(data.settings.phone)}
           </a>
           <EnquireButton interestedIn="planning an event" />
           <p className="sample-note">
@@ -771,28 +771,107 @@ export function Contact() {
   );
 }
 export function Privacy() {
+  const { data } = useSite();
+  const sections = [
+    {
+      id: "enquiries",
+      title: "Information you share",
+      text: "When you make an enquiry, you may share your name, phone number, event date, event type, expected guest count, preferred venue and any additional notes. Please share only the information needed to help us understand your celebration.",
+    },
+    {
+      id: "whatsapp",
+      title: "Enquiries through WhatsApp",
+      text: "Our contact form prepares a WhatsApp message using the details you enter. You can review the message in WhatsApp before sending it. The venue uses the details you send to respond to your enquiry and discuss availability and event arrangements. Sending an enquiry does not confirm a booking or make a payment.",
+    },
+    {
+      id: "storage",
+      title: "Browser storage & site features",
+      text: "The website uses browser local storage to remember site content settings in your browser. The administration area uses session cookies for signed-in access. You can manage cookies and clear stored site data in your browser settings; doing so may reset saved settings or sign you out of the administration area.",
+    },
+    {
+      id: "external-services",
+      title: "External services & links",
+      text: "Some features connect to other services. WhatsApp handles messages sent through its platform, and embedded Google Maps provides location information. These providers process information according to their own privacy policies. Links to external websites take you to services managed by their respective operators.",
+    },
+    {
+      id: "photographs",
+      title: "Photographs on this website",
+      text: "Our gallery shows venue spaces, decorations and event arrangements. If you have a privacy concern about a photograph displayed on the website, contact the venue and identify the image so the team can review your request.",
+    },
+    {
+      id: "your-choices",
+      title: "Your choices & questions",
+      text: "You can choose which details to include in your enquiry. To ask about information you have shared, request a correction or removal, or raise a question about this page, contact Mauli Lawns using the details below. Please avoid including sensitive personal information in general enquiry messages.",
+    },
+  ];
   return (
     <>
-      <PageIntro eyebrow="YOUR INFORMATION" title="Privacy & this demo." />
-      <section className="section prose">
-        <h2>Your inquiry</h2>
-        <p>
-          The contact form sends the details you enter to WhatsApp when you submit it. WhatsApp's
-          own privacy terms apply. This website does not automatically confirm a booking or collect
-          payments.
-        </p>
-        <h2>Local demo storage</h2>
-        <p>
-          Admin changes are saved in this browser's local storage. The demo has no secure
-          authentication or database. Do not enter sensitive personal information into the admin
-          panel. You can reset demo content in Website Settings or clear your browser's site data.
-        </p>
-        <h2>Contact</h2>
-        <p>
-          For questions, contact the venue using the phone or WhatsApp links provided on this
-          website.
-        </p>
-      </section>
+      <PageIntro
+        eyebrow="YOUR PRIVACY MATTERS"
+        title="Privacy policy."
+        description="How information is shared when you explore our venue and plan your celebration."
+      />
+      <div className="privacy-layout">
+        <aside className="privacy-sidebar">
+          <nav aria-label="Privacy policy sections">
+            <p className="eyebrow">ON THIS PAGE</p>
+            <ol>
+              {sections.map((section, index) => (
+                <li key={section.id}>
+                  <a href={`#${section.id}`}>
+                    <span className="privacy-nav-number">0{index + 1}</span>
+                    {section.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <div className="privacy-sidebar-note">
+            <span className="eyebrow">HERE TO HELP</span>
+            <p>Have a question about your information?</p>
+            <a href="#privacy-contact" className="privacy-contact-link">
+              Contact the venue <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+        </aside>
+        <article className="privacy-document" aria-label="Mauli Lawns privacy policy">
+          <div className="privacy-overview">
+            <span className="eyebrow">AT A GLANCE</span>
+            <h2>A little clarity, before you enquire.</h2>
+            <p>
+              This page explains the information you may share with Mauli Lawns, how our
+              website features work and how to reach us with a privacy question.
+            </p>
+          </div>
+          {sections.map((section, index) => (
+            <section className="privacy-section" id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}>
+              <span className="privacy-section-number" aria-hidden="true">0{index + 1}</span>
+              <div>
+                <h2 id={`${section.id}-title`}>{section.title}</h2>
+                <p>{section.text}</p>
+              </div>
+            </section>
+          ))}
+          <section className="privacy-contact" id="privacy-contact" aria-labelledby="privacy-contact-title">
+            <span className="eyebrow">LET’S TALK</span>
+            <h2 id="privacy-contact-title">Contact Mauli Lawns</h2>
+            <p>{data.settings.address}</p>
+            <div className="privacy-contact-actions">
+              <a className="button" href={`tel:${data.settings.phone.replace(/\s/g, "")}`}>
+                Call {formatPhone(data.settings.phone)}
+              </a>
+              <a
+                className="privacy-contact-link"
+                href={whatsappLink(data.settings.whatsapp, "a privacy question")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Message on WhatsApp <ArrowRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </section>
+        </article>
+      </div>
     </>
   );
 }

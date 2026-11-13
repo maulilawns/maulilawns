@@ -22,7 +22,7 @@ export function FloatingWhatsApp() {
       initial={{ opacity: 0, scale: 0.6 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1.2, duration: 0.5 }}
-      className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-110"
+      className="floating-whatsapp fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-110"
     >
       <WhatsAppIcon className="h-7 w-7" />
       <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366] opacity-30" />
@@ -81,7 +81,7 @@ export function EnquireButton({
 export function StickyMobileEnquiry({ interestedIn }: { interestedIn: string }) {
   const { data } = useSite();
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-ivory/95 px-4 py-3 backdrop-blur md:hidden">
+    <div className="mobile-enquiry fixed inset-x-0 bottom-0 z-40 border-t border-gold/30 bg-ivory/95 px-4 py-3 backdrop-blur md:hidden">
       <div className="grid grid-cols-2 gap-3">
         <a
           href={`tel:${data.settings.phone.replace(/\s/g, "")}`}

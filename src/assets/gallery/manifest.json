@@ -1,0 +1,121 @@
+[
+  {
+    "file": "venue-gardens-pool.webp",
+    "title": "Venue building, gardens and swimming pool",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "venue-gardens-pool-client.webp"
+  },
+  {
+    "file": "grand-stage-pink.webp",
+    "title": "Grand Lawn — pink illuminated stage and seating",
+    "category": "grand-lawn",
+    "featured": true,
+    "originalFilename": "grand-stage-pink-client.webp"
+  },
+  {
+    "file": "grand-aerial-blue.webp",
+    "title": "Grand Lawn — blue stage and evening reception",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-aerial-blue-client.webp"
+  },
+  {
+    "file": "grand-entrance-aerial.webp",
+    "title": "Grand Lawn — aerial entrance and seating",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-entrance-aerial-client.webp"
+  },
+  {
+    "file": "grand-overhead-night.webp",
+    "title": "Grand Lawn — overhead evening layout",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-overhead-night-client.webp"
+  },
+  {
+    "file": "grand-guest-seating.webp",
+    "title": "Grand Lawn — guest seating and dining tables",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-guest-seating-client.webp"
+  },
+  {
+    "file": "grand-stage-blue.webp",
+    "title": "Grand Lawn — blue stage lighting and seating",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-stage-blue-client.webp"
+  },
+  {
+    "file": "grand-stage-green.webp",
+    "title": "Grand Lawn — green illuminated stage",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-stage-green-client.webp"
+  },
+  {
+    "file": "grand-reception-seating.webp",
+    "title": "Grand Lawn — reception seating and entrance",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "grand-reception-seating-client.webp"
+  },
+  {
+    "file": "illuminated-garden-walkway.webp",
+    "title": "Garden walkway — illuminated arches and lanterns",
+    "category": "wedding-decorations",
+    "featured": true,
+    "originalFilename": "illuminated-garden-walkway-client.webp"
+  },
+  {
+    "file": "venue-neighbourhood-night.webp",
+    "title": "Mauli Lawns — neighbourhood view at night",
+    "category": "grand-lawn",
+    "featured": false,
+    "originalFilename": "venue-neighbourhood-night-client.webp"
+  },
+  {
+    "file": "venue-drone-day.webp",
+    "title": "Mauli Lawns — daytime aerial overview",
+    "category": "grand-lawn",
+    "featured": true,
+    "originalFilename": "venue-drone-day-client.webp"
+  },
+  {
+    "file": "mini-lawn-ceremony.webp",
+    "title": "Mini Lawn — pastel celebration and ceremony seating",
+    "category": "mini-lawn",
+    "featured": true,
+    "originalFilename": "mini-lawn-ceremony-client.jpeg"
+  },
+  {
+    "file": "mini-lawn-dining.webp",
+    "title": "Mini Lawn — garden dining arrangement",
+    "category": "mini-lawn",
+    "featured": true,
+    "originalFilename": "mini-lawn-dining-client.jpeg"
+  },
+  {
+    "file": "mini-lawn-stage.webp",
+    "title": "Mini Lawn — birthday stage and garden aisle",
+    "category": "mini-lawn",
+    "featured": false,
+    "originalFilename": "mini-lawn-stage-client.jpeg"
+  },
+  {
+    "file": "mini-lawn-ceremony-alternate.webp",
+    "title": "Mini Lawn — pastel stage and purple aisle",
+    "category": "mini-lawn",
+    "featured": false,
+    "originalFilename": "mini-lawn-ceremony-alternate-client.webp"
+  },
+  {
+    "file": "grand-lawn-aerial.webp",
+    "title": "Grand Lawn — illuminated evening aerial view",
+    "category": "grand-lawn",
+    "featured": true,
+    "originalFilename": "grand-lawn-aerial-client.webp"
+  }
+]

@@ -435,8 +435,8 @@ a:focus-visible {
 }
 .hero-shade {
   background:
-    linear-gradient(90deg, #071c22a8, #0d192a20),
-    linear-gradient(0deg, #06151f90, transparent 45%, #06151f65);
+    linear-gradient(90deg, #071c2266, #0d192a08),
+    linear-gradient(0deg, #06151f45, transparent 40%, #06151f25);
 }
 .hero-content {
   position: relative;
@@ -506,6 +506,7 @@ a:focus-visible {
   transform: rotate(-30deg);
 }
 .promise-strip {
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2946,4 +2947,135 @@ nav[aria-label="Primary"] a {
 }
 @media (max-width: 640px) {
   .offer-section > .offer-photo { min-height: 300px; }
+}
+
+/* Keep body paragraphs black while preserving the original heading palette. */
+.public-site p:not(.eyebrow),
+.public-site p:not(.eyebrow) :is(a, span, strong, b, em, small) {
+  color: #000 !important;
+}
+
+/* Align descriptive copy evenly without stretching labels or short captions. */
+.public-site main p:not(.eyebrow):not(.sample-note):not(.venue-tagline) {
+  text-align: justify;
+  text-align-last: start;
+  text-justify: inter-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.public-site :is(.testimonial, .lightbox, .offer-section) p,
+.public-site p[role="status"] {
+  text-align: inherit;
+  text-align-last: auto;
+}
+
+/* Consistent body copy, matching the introduction paragraphs. */
+.public-site p:not(.eyebrow):not(.sample-note):not(.venue-tagline),
+.public-site main :is(li, summary, label, input, select, textarea) {
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.public-site p.sample-note {
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* Compact footer with a clear break after the preceding section. */
+.public-site .site-footer {
+  margin-top: 32px;
+}
+.public-site .site-footer p {
+  color: #f5f2e9 !important;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+.public-site .site-footer p :is(a, span, strong, b, em, small) {
+  color: inherit !important;
+}
+.public-site .site-footer .footer-bottom p {
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .public-site .site-footer {
+    margin-top: 24px;
+  }
+}
+
+/* Privacy policy: readable document with a compact section index. */
+.privacy-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 64px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 64px 40px 48px;
+  align-items: start;
+}
+.privacy-sidebar {
+  position: sticky;
+  top: 120px;
+}
+.privacy-sidebar nav > p { margin-bottom: 20px; }
+.privacy-sidebar ol { list-style: none; padding: 0; margin: 0; }
+.privacy-sidebar li + li { margin-top: 4px; }
+.privacy-sidebar nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #172b4d;
+  transition: color .2s;
+}
+.privacy-sidebar nav a:hover { color: #93753d; }
+.privacy-nav-number { color: #9c8354; font-size: 11px; letter-spacing: .08em; }
+.privacy-sidebar-note { border-top: 1px solid #c6a45e66; margin-top: 24px; padding-top: 24px; }
+.privacy-sidebar-note p { margin: 12px 0 16px; }
+.public-site main .privacy-sidebar-note p { text-align: left; }
+.privacy-contact-link { display: inline-flex; gap: 12px; align-items: center; font-size: 14px; color: #172b4d; text-decoration: underline; text-underline-offset: 5px; }
+.privacy-overview { padding: 32px; border: 1px solid #c6a45e55; background: #f0eee5; }
+.privacy-overview h2 { font-size: clamp(1.8rem, 2.5vw, 2.3rem); margin: 14px 0 18px; line-height: 1.2; }
+.privacy-section { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 16px; padding: 32px 0; border-bottom: 1px solid #172b4d20; scroll-margin-top: 116px; }
+.privacy-section-number { color: #9c8354; font-size: 12px; padding-top: 7px; letter-spacing: .08em; }
+.privacy-section h2 { font-size: clamp(1.5rem, 2vw, 1.9rem); line-height: 1.25; margin-bottom: 14px; }
+.privacy-contact { background: #f0eee5; border-left: 3px solid #c6a45e; padding: 32px; margin-top: 32px; scroll-margin-top: 116px; }
+.privacy-contact h2 { font-size: 1.9rem; margin: 14px 0 18px; }
+.privacy-contact-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 24px; }
+@media (max-width: 900px) {
+  .privacy-layout { grid-template-columns: 1fr; gap: 32px; padding: 40px 24px; }
+  .privacy-sidebar { position: static; }
+  .privacy-sidebar ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+  .privacy-sidebar-note { display: none; }
+}
+@media (max-width: 540px) {
+  .privacy-layout { padding: 32px 20px; }
+  .privacy-sidebar ol { grid-template-columns: 1fr; }
+  .privacy-sidebar nav a { padding: 6px 0; }
+  .privacy-overview, .privacy-contact { padding: 24px 20px; }
+  .privacy-section { gap: 8px; grid-template-columns: 24px minmax(0, 1fr); padding: 28px 0; }
+  .privacy-contact-actions { align-items: stretch; flex-direction: column; gap: 20px; }
+  .privacy-contact-actions .privacy-contact-link { justify-content: center; }
+}
+
+/* Keep mobile controls clear of each other and of the phone's safe area. */
+@media (max-width: 767px) {
+  .public-site:has(.mobile-enquiry) {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  }
+  .public-site .floating-whatsapp {
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  }
+  .public-site:has(.mobile-enquiry) .floating-whatsapp {
+    bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-enquiry {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-enquiry a {
+    min-height: 44px;
+    padding-inline: 8px;
+    white-space: nowrap;
+  }
 }

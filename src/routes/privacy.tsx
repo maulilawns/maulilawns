@@ -3,11 +3,11 @@ import { Privacy } from "@/components/site/pages";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "privacy | Mauli Lawns, Wagholi Pune" },
+      { title: "Privacy Policy | Mauli Lawns, Wagholi Pune" },
       {
         name: "description",
         content:
-          "Explore privacy at Mauli Lawns, premium wedding and event venue in Wagholi, Pune.",
+          "Learn how Mauli Lawns handles enquiry information, browser storage and external services, and how to contact us with privacy questions.",
       },
     ],
   }),

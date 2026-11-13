@@ -21,6 +21,7 @@
     "test:integration": "node --test server/tests/workflow.integration.test.js",
     "typecheck": "tsc --noEmit",
     "test:browser": "node scripts/browser-smoke.mjs",
+    "db:import-client-gallery": "node server/import-client-gallery.js",
     "db:import-mini-photos": "node server/import-mini-photos.js"
   },
   "overrides": {

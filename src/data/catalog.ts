@@ -7,8 +7,8 @@ import venueMini from "@/assets/mini-lawn-ceremony.webp";
 import miniLawnDining from "@/assets/mini-lawn-dining.webp";
 import miniLawnStage from "@/assets/mini-lawn-stage.webp";
 
-import heroMain from "@/assets/home-aerial.webp";
-import venueGrand from "@/assets/grand-lawn-evening.webp";
+import heroMain from "@/assets/home-banner-drone.webp";
+import venueGrand from "@/assets/grand-lawn-aerial.webp";
 import frontGate from "@/assets/front-gate.webp";
 import ctaEvening from "@/assets/cta-evening.jpg";
 import decorRoyal from "@/assets/decor-royal.jpg";
@@ -400,4 +400,11 @@ export const WHY_CHOOSE = [
 export function formatINR(amount: number | null): string {
   if (amount == null) return "Request a Quote";
   return "₹" + new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 }).format(amount);
+}
+
+/** Display Indian phone numbers in easy-to-read pairs. */
+export function formatPhone(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  const local = digits.length === 12 && digits.startsWith("91") ? digits.slice(2) : digits;
+  return local.length === 10 ? local.match(/.{2}/g)!.join(" ") : phone;
 }

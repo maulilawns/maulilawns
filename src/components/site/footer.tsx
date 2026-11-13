@@ -1,3 +1,5 @@
+import { NAV_LINKS } from "@/data/navigation";
+import { formatPhone } from "@/data/catalog";
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
 import logo from "@/assets/logo.png";
@@ -47,21 +49,27 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-navy-deep text-ivory">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+    <footer className="site-footer bg-navy-deep text-ivory">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <img src={logo} alt="Mauli Lawns logo" className="mb-5 h-20 w-auto" />
+          <Link
+            to="/"
+            aria-label="Mauli Lawns home"
+            className="mb-4 inline-flex rounded-lg bg-ivory p-3"
+          >
+            <img src={logo} alt="Mauli Lawns logo" className="h-20 w-auto object-contain" />
+          </Link>
           <p className="text-sm leading-relaxed text-ivory/75">
             A premium open-air wedding and event venue in Wagholi, Pune — where beautiful
             celebrations begin, from intimate gatherings to grand weddings.
           </p>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-4 flex gap-3">
             {SOCIALS.map(({ svg, label }) => (
               <span
                 key={label}
                 title={label}
                 aria-label={label}
-                className="flex h-10 w-10 cursor-default items-center justify-center rounded-full border border-ivory/20 text-ivory/70 transition-colors hover:border-gold hover:text-gold"
+                className="flex h-8 w-8 cursor-default items-center justify-center rounded-full border border-ivory/20 text-ivory/70 transition-colors hover:border-gold hover:text-gold"
               >
                 {svg}
               </span>
@@ -71,18 +79,8 @@ export function Footer() {
 
         <nav aria-label="Quick links">
           <h3 className="font-display text-xl text-gold-soft">Quick Links</h3>
-          <ul className="mt-5 space-y-3 text-sm">
-            {[
-              { to: "/", label: "Home" },
-              { to: "/about", label: "About Us" },
-              { to: "/venues", label: "Our Venues" },
-              { to: "/packages", label: "Event Packages" },
-              { to: "/decor-themes", label: "Decor Themes" },
-              { to: "/events", label: "Events We Host" },
-              { to: "/facilities", label: "Facilities" },
-              { to: "/gallery", label: "Gallery" },
-              { to: "/contact", label: "Contact Us" },
-            ].map((l) => (
+          <ul className="mt-4 space-y-2 text-sm">
+            {NAV_LINKS.map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="text-ivory/75 transition-colors hover:text-gold-soft">
                   {l.label}
@@ -94,51 +92,35 @@ export function Footer() {
 
         <nav aria-label="Our venues and events">
           <h3 className="font-display text-xl text-gold-soft">Our Venues & Events</h3>
-          <ul className="mt-5 space-y-3 text-sm">
-            <li>
-              <Link
-                to="/venues/$slug"
-                params={{ slug: "mini-lawn" }}
-                className="text-ivory/75 transition-colors hover:text-gold-soft"
-              >
-                Mauli Mini Lawn
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/venues/$slug"
-                params={{ slug: "grand-lawn" }}
-                className="text-ivory/75 transition-colors hover:text-gold-soft"
-              >
-                Mauli Grand Lawn
-              </Link>
-            </li>
-            <li>
-              <Link to="/events" className="text-ivory/75 transition-colors hover:text-gold-soft">
-                Grand Weddings
-              </Link>
-            </li>
-            <li>
-              <Link to="/events" className="text-ivory/75 transition-colors hover:text-gold-soft">
-                Engagement Ceremonies
-              </Link>
-            </li>
-            <li>
-              <Link to="/events" className="text-ivory/75 transition-colors hover:text-gold-soft">
-                Birthdays & Baby Showers
-              </Link>
-            </li>
-            <li>
-              <Link to="/events" className="text-ivory/75 transition-colors hover:text-gold-soft">
-                Corporate Events
-              </Link>
-            </li>
+          <ul className="mt-4 space-y-2 text-sm">
+            {data.venues.map((venue) => (
+              <li key={venue.id}>
+                <Link
+                  to="/venues/$slug"
+                  params={{ slug: venue.slug }}
+                  className="text-ivory/75 transition-colors hover:text-gold-soft"
+                >
+                  {venue.name}
+                </Link>
+              </li>
+            ))}
+            {data.eventCategories.map((event) => (
+              <li key={event.id}>
+                <Link
+                  to="/events"
+                  hash={event.slug}
+                  className="text-ivory/75 transition-colors hover:text-gold-soft"
+                >
+                  {event.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <div>
           <h3 className="font-display text-xl text-gold-soft">Contact Details</h3>
-          <ul className="mt-5 space-y-4 text-sm text-ivory/75">
+          <ul className="mt-4 space-y-3 text-sm text-ivory/75">
             <li className="flex gap-3">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <span>{data.settings.address}</span>
@@ -149,7 +131,7 @@ export function Footer() {
                 href={`tel:${data.settings.phone.replace(/\s/g, "")}`}
                 className="hover:text-gold-soft"
               >
-                {data.settings.phone}
+                {formatPhone(data.settings.phone)}
               </a>
             </li>
             <li className="flex gap-3">
@@ -166,7 +148,7 @@ export function Footer() {
           </ul>
           <Link
             to="/contact"
-            className="btn-gold mt-7 inline-flex rounded-full px-6 py-2.5 text-[0.68rem]"
+            className="btn-gold mt-5 inline-flex rounded-full px-6 py-2.5 text-[0.68rem]"
           >
             Plan Your Event
           </Link>
@@ -174,14 +156,20 @@ export function Footer() {
       </div>
 
       <div className="border-t border-ivory/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-ivory/60 sm:flex-row sm:px-6 lg:px-8">
-          <p>© {year} Mauli Lawns. All rights reserved.</p>
-          <p className="flex items-center gap-4">
+        <div className="footer-bottom mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-4 text-center text-xs text-ivory/60 sm:px-6 lg:px-8">
+          <p>
             <Link to="/privacy">Privacy Policy</Link>
-            <span aria-hidden>⬢</span>
-            <Link to="/admin" className="transition-colors hover:text-gold-soft">
-              Admin (Demo)
-            </Link>
+          </p>
+          <p>
+            © {year} Mauli Lawns. All rights reserved. Designed by{" "}
+            <a
+              href="https://webakoof.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              Webakoof
+            </a>
           </p>
         </div>
       </div>
