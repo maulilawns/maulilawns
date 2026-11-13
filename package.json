@@ -22,7 +22,9 @@
     "typecheck": "tsc --noEmit",
     "test:browser": "node scripts/browser-smoke.mjs",
     "db:import-client-gallery": "node server/import-client-gallery.js",
-    "db:import-mini-photos": "node server/import-mini-photos.js"
+    "db:import-mini-photos": "node server/import-mini-photos.js",
+    "build:hostinger": "node scripts/build-hostinger.mjs",
+    "start:hostinger": "node .output/server/index.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",

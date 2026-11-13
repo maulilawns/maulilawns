@@ -4,7 +4,7 @@ export function getConfig(env = process.env) {
   const production = env.NODE_ENV === "production";
   const config = {
     production,
-    port: Number(env.API_PORT || 3001),
+    port: Number(env.API_PORT || env.PORT || 3001),
     databaseUrl: env.DATABASE_URL,
     sessionSecret: env.SESSION_SECRET,
     origins: (env.APP_ORIGINS || "http://localhost:8080").split(",").map((x) => x.trim()),

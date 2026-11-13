@@ -14,6 +14,12 @@ const env = {
   SESSION_SECRET: "test-only-secret-that-is-at-least-32-characters",
   APP_ORIGINS: "http://localhost:8080",
 };
+test("API listens on the hosting port unless explicitly overridden", () => {
+  assert.equal(getConfig({ ...env, PORT: "8123" }).port, 8123);
+  assert.equal(getConfig({ ...env, PORT: "8123", API_PORT: "3001" }).port, 3001);
+  assert.equal(getConfig(env).port, 3001);
+  assert.throws(() => getConfig({ ...env, PORT: "invalid" }), /API_PORT/);
+});
 test("production refuses ephemeral upload storage and HTTP origins", () => {
   assert.throws(() => getConfig({ ...env, NODE_ENV: "production" }), /persistent disk/);
   assert.throws(
