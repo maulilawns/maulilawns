@@ -38,3 +38,8 @@ Do not rewrite published Git history on the connected branch.
 The content studio is available at `/admin/login`. See [admin setup and deployment](docs/ADMIN-SETUP.md) for MySQL migrations, the initial account, persistent image storage and importing existing gallery photographs. See [verification results](docs/TEST-RESULTS.md) for tested behavior and remaining integration checks.
 
 Local testing is configured for this checkout: run `./scripts/local-start.sh` and open `http://localhost:8080/admin/login`. See [local testing](docs/LOCAL-TESTING.md).
+
+## Hostinger on one domain
+
+For the website and API on the main domain, use `npm run build:hostinger:site` and
+entry `server.js`. See [the single-app setup](deploy/HOSTINGER-SINGLE-APP.md).

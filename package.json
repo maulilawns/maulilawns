@@ -17,14 +17,16 @@
     "db:migrate": "node server/setup.js",
     "db:admin": "node server/setup.js --admin",
     "db:import-gallery": "node server/import-gallery.js",
-    "test:server": "node --test server/tests/security.test.js",
+    "test:server": "node --test server/tests/security.test.js server/tests/site-routing.test.js",
     "test:integration": "node --test server/tests/workflow.integration.test.js",
     "typecheck": "tsc --noEmit",
     "test:browser": "node scripts/browser-smoke.mjs",
     "db:import-client-gallery": "node server/import-client-gallery.js",
     "db:import-mini-photos": "node server/import-mini-photos.js",
     "build:hostinger": "node scripts/build-hostinger.mjs",
-    "start:hostinger": "node .output/server/index.mjs"
+    "start:hostinger": "node .output/server/index.mjs",
+    "build:hostinger:site": "node scripts/build-hostinger.mjs --site",
+    "start": "node server.js"
   },
   "overrides": {
     "rolldown": "1.2.1",

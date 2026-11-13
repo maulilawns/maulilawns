@@ -1,11 +1,19 @@
 // Build the existing TanStack Start frontend for a Node.js server on Hostinger.
 // Keep the normal Lovable/Cloudflare build unchanged.
-import { spawnSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
-const vite = fileURLToPath(new URL('../node_modules/vite/bin/vite.js', import.meta.url));
-const result = spawnSync(process.execPath, [vite, 'build'], {
-  stdio: 'inherit',
-  env: { ...process.env, NITRO_PRESET: 'node-server' },
+import { spawnSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
+const vite = fileURLToPath(new URL("../node_modules/vite/bin/vite.js", import.meta.url));
+const site = process.argv.includes("--site");
+const result = spawnSync(process.execPath, [vite, "build"], {
+  stdio: "inherit",
+  env: {
+    ...process.env,
+    NITRO_PRESET: site ? "node-middleware" : "node-server",
+    ...(site ? { VITE_API_BASE_URL: "" } : {}),
+  },
 });
-if (result.error) { console.error(result.error.message); process.exit(1); }
+if (result.error) {
+  console.error(result.error.message);
+  process.exit(1);
+}
 process.exit(result.status ?? 1);
