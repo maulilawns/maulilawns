@@ -183,7 +183,6 @@ export const seedVenues: Venue[] = [
     galleryKeys: ["venue-grand", "gallery-stage", "gallery-lighting", "decor-royal", "gallery-dining"],
     faqs: [
       { question: "How many guests can the Grand Lawn host?", answer: "The Grand Lawn hosts 100–700 guests, seated or in flowing layouts." },
-      { question: "What is the Special Opening Offer?", answer: "The venue rental is ₹1,51,000 — currently available at a Special Opening Offer of ₹71,000." },
       { question: "Is there power backup?", answer: "Yes, a generator provides full power backup throughout your event." },
       { question: "Can we arrange catering?", answer: "A kitchen setup is available on-site; catering can be arranged through vendors of your choice." },
     ],
