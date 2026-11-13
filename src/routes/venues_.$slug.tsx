@@ -7,7 +7,7 @@ export const Route = createFileRoute("/venues_/$slug")({
       {
         name: "description",
         content:
-          "Discover venue capacity, facilities, pricing and WhatsApp inquiries at Mauli Lawns.",
+          "Discover venue capacity, facilities and WhatsApp inquiries at Mauli Lawns.",
       },
     ],
   }),

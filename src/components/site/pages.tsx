@@ -546,9 +546,13 @@ export function VenueDetails({ slug }: { slug: string }) {
           <p>
             {v.capacityMin}–{v.capacityMax} guests
           </p>
-          {v.originalPrice && <del>{formatINR(v.originalPrice)}</del>}
-          <h2>{formatINR(v.price)}</h2>
-          <p>{v.offerLabel || "Venue rental"}</p>
+          {v.slug !== "mini-lawn" && (
+            <>
+              {v.originalPrice && <del>{formatINR(v.originalPrice)}</del>}
+              <h2>{formatINR(v.price)}</h2>
+              <p>{v.offerLabel || "Venue rental"}</p>
+            </>
+          )}
           <EnquireButton interestedIn={v.name} />
           <p className="sample-note">
             Availability, final inclusions and booking details are confirmed directly by our team.
