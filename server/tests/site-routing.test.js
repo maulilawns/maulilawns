@@ -43,7 +43,7 @@ test("live public URLs show Coming Soon while local development remains availabl
       assert.equal(response.headers["retry-after"], "3600");
       assert.equal(response.headers["cache-control"], "no-store");
     }
-    for (const path of ["/admin/login", "/assets/site.js", "/coming-soon-logo.png"]) {
+    for (const path of ["/admin/login", "/assets/site.js", "/coming-soon-logo.png", "/favicon.ico", "/favicon.png", "/favicon-32x32.png", "/apple-touch-icon.png"]) {
       await request(site).get(path).set("Host", host).expect(200);
     }
     await request(site).get("/api/admin/dashboard/stats").set("Host", host).expect(401);

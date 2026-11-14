@@ -7,7 +7,7 @@ export function createSiteHandler(api, frontend, { comingSoon = process.env.COMI
     const host = (req.headers.host || "").split(":")[0].toLowerCase();
     const isLiveDomain = host === "maulilawns.com" || host === "www.maulilawns.com";
     const servicePath = /^\/(?:api|uploads|health|admin|assets)(?:\/|$)/.test(pathname)
-      || pathname === "/coming-soon-logo.png";
+      || ["/coming-soon-logo.png", "/favicon.ico", "/favicon.png", "/favicon-32x32.png", "/apple-touch-icon.png"].includes(pathname);
     if (comingSoon && isLiveDomain && !servicePath) {
       res.writeHead(503, {
         "Content-Type": "text/html; charset=utf-8",
