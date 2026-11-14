@@ -221,7 +221,7 @@ export function Home() {
           name={slide === 0 ? data.settings.bannerImageKey : "cta-evening"}
           alt={
             slide === 0
-              ? "Mauli Lawns wedding venue at night with a brightly lit floral stage and rows of white chairs with pink sashes"
+              ? "Aerial view of Mauli Lawns with the venue building, lush gardens, palm trees and swimming pool"
               : "Evening wedding celebration under lights"
           }
           priority

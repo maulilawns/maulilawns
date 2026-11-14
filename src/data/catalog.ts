@@ -7,7 +7,7 @@ import venueMini from "@/assets/mini-lawn-ceremony.webp";
 import miniLawnDining from "@/assets/mini-lawn-dining.webp";
 import miniLawnStage from "@/assets/mini-lawn-stage.webp";
 
-import heroMain from "@/assets/home-banner-wedding.webp";
+import heroMain from "@/assets/gallery/venue-gardens-pool.webp";
 import venueGrand from "@/assets/grand-lawn-aerial.webp";
 import frontGate from "@/assets/front-gate.webp";
 import ctaEvening from "@/assets/cta-evening.jpg";
