@@ -951,13 +951,22 @@ a:focus-visible {
   color: #626b74;
   font-size: 14px;
 }
-.intro-branch {
+.page-intro > :is(h1, p) {
+  position: relative;
+  z-index: 1;
+}
+.intro-floral {
   position: absolute;
-  right: -60px;
+  right: 0;
   bottom: 0;
-  width: 270px;
-  color: #b79b63;
-  opacity: 0.2;
+  width: min(68%, 900px);
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: right bottom;
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
 }
 .detail-hero {
   height: 560px;
@@ -1613,6 +1622,10 @@ nav[aria-label="Primary"] a {
   }
   .page-intro h1 {
     font-size: 47px;
+  }
+  .intro-floral {
+    width: 100%;
+    opacity: 0.25;
   }
   .page-intro > p:last-of-type {
     font-size: 12px;

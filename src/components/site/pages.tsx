@@ -21,6 +21,7 @@ import { Navbar } from "./navbar";
 import { Footer } from "./footer";
 import { EnquireButton, FloatingWhatsApp, StickyMobileEnquiry } from "./whatsapp";
 import { BotanicalBranch, Reveal, SectionHeading } from "./reveal";
+import breadcrumbFloral from "@/assets/breadcrumb-floral.webp";
 
 export function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -72,7 +73,7 @@ export function PageIntro({
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       {description && <p>{description}</p>}
-      <BotanicalBranch className="intro-branch" />
+      <img src={breadcrumbFloral} className="intro-floral" alt="" aria-hidden="true" width={1400} height={717} decoding="async" />
     </header>
   );
 }
