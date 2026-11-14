@@ -221,7 +221,7 @@ export function Home() {
           name={slide === 0 ? data.settings.bannerImageKey : "cta-evening"}
           alt={
             slide === 0
-              ? "Aerial view of Mauli Lawns with landscaped gardens, venue building and swimming pool"
+              ? "Mauli Lawns wedding venue at night with a brightly lit floral stage and rows of white chairs with pink sashes"
               : "Evening wedding celebration under lights"
           }
           priority
@@ -477,6 +477,23 @@ export function VenueDetails({ slug }: { slug: string }) {
   const { data, img } = useSite();
   const v = data.venues.find((v) => v.slug === slug);
   if (!v) return <PageIntro eyebrow="VENUE NOT FOUND" title="Let's find your perfect space." />;
+  const rentalPackageId = {
+    "mini-lawn": "p-mini-rental",
+    "grand-lawn": "p-grand-rental",
+  }[slug];
+  const rentalPackage = data.packages.find(
+    (p) => p.category === "venue" && p.id === rentalPackageId,
+  );
+  // Keep venue facilities aligned with the package, including saved package edits.
+  const packageFacilities = rentalPackage?.inclusions.filter(
+    (inclusion) => !/^lawn rental\b/i.test(inclusion),
+  );
+  const facilities = packageFacilities?.length
+    ? [...new Set([
+        ...packageFacilities,
+        ...v.amenities.filter((amenity) => /parking/i.test(amenity)),
+      ])]
+    : v.amenities;
   return (
     <>
       <section className="detail-hero">
@@ -498,7 +515,7 @@ export function VenueDetails({ slug }: { slug: string }) {
           <p>{v.longDescription}</p>
           <h3>Included facilities</h3>
           <ul className="inclusions">
-            {v.amenities.map((a) => (
+            {facilities.map((a) => (
               <li key={a}>✓ {a}</li>
             ))}
           </ul>

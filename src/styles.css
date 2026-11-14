@@ -431,12 +431,12 @@ a:focus-visible {
   object-fit: cover;
 }
 .hero > img {
-  animation: cinema 18s ease-out both;
+  object-position: center center;
 }
 .hero-shade {
   background:
-    linear-gradient(90deg, #071c2266, #0d192a08),
-    linear-gradient(0deg, #06151f45, transparent 40%, #06151f25);
+    linear-gradient(90deg, rgb(6 21 31 / 78%) 0%, rgb(6 21 31 / 45%) 38%, transparent 72%),
+    linear-gradient(0deg, rgb(6 21 31 / 45%), transparent 20%);
 }
 .hero-content {
   position: relative;
@@ -459,6 +459,7 @@ a:focus-visible {
   margin: 24px 0;
   color: #fff;
   max-width: 900px;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 45%);
 }
 .hero h1 em {
   color: #ead9ac;
@@ -468,6 +469,7 @@ a:focus-visible {
   color: #fffcefca;
   font-size: 14px;
   margin: 25px 0 34px;
+  text-shadow: 0 1px 6px rgb(0 0 0 / 80%);
 }
 .hero-actions {
   display: flex;
@@ -2956,7 +2958,7 @@ nav[aria-label="Primary"] a {
 }
 
 /* Align descriptive copy evenly without stretching labels or short captions. */
-.public-site main p:not(.eyebrow):not(.sample-note):not(.venue-tagline) {
+.public-site main p:not(.eyebrow):not(.sample-note):not(.venue-tagline):not(.hero-description) {
   text-align: justify;
   text-align-last: start;
   text-justify: inter-word;
@@ -2981,6 +2983,13 @@ nav[aria-label="Primary"] a {
 }
 
 /* Compact footer with a clear break after the preceding section. */
+.public-site main .hero p.hero-description {
+  color: #fff !important;
+  text-align: left;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
 .public-site .site-footer {
   margin-top: 32px;
 }
