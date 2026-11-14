@@ -597,6 +597,13 @@ a:focus-visible {
   height: 510px;
   object-fit: cover;
 }
+.story > img.about-story-photo {
+  height: auto;
+  aspect-ratio: 2400 / 1348;
+  object-fit: contain;
+  object-position: center;
+  align-self: center;
+}
 .venues-section {
   background: #f1eee6;
   max-width: none;

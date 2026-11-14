@@ -433,6 +433,7 @@ export function About() {
       <section className="section story">
         <Photo
           name="garden-walkway"
+          className="about-story-photo"
           alt="Mauli Lawns garden walkway in Wagholi, Pune, with illuminated floral arches, hanging lanterns and lush greenery"
         />
         <div>
