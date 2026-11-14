@@ -430,7 +430,10 @@ export function About() {
         description="Beautiful open spaces, thoughtful details and celebrations that feel like you."
       />
       <section className="section story">
-        <Photo name="decor-garden" alt="Botanical garden ceremony setup" />
+        <Photo
+          name="garden-walkway"
+          alt="Mauli Lawns garden walkway in Wagholi, Pune, with illuminated floral arches, hanging lanterns and lush greenery"
+        />
         <div>
           <p className="eyebrow">OUR STORY</p>
           <h2>

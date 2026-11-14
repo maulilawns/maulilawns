@@ -8,6 +8,7 @@ import miniLawnDining from "@/assets/mini-lawn-dining.webp";
 import miniLawnStage from "@/assets/mini-lawn-stage.webp";
 
 import heroMain from "@/assets/gallery/venue-gardens-pool.webp";
+import gardenWalkway from "@/assets/gallery/illuminated-garden-walkway.webp";
 import venueGrand from "@/assets/grand-lawn-aerial.webp";
 import frontGate from "@/assets/front-gate.webp";
 import ctaEvening from "@/assets/cta-evening.jpg";
@@ -33,6 +34,7 @@ export const IMAGES: Record<string, string> = {
   "mini-lawn-dining": miniLawnDining,
   "mini-lawn-stage": miniLawnStage,
   "hero-main": heroMain,
+  "garden-walkway": gardenWalkway,
   "venue-grand": venueGrand,
   "front-gate": frontGate,
   "cta-evening": ctaEvening,
