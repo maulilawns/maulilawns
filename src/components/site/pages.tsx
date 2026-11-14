@@ -542,7 +542,13 @@ export function VenueDetails({ slug }: { slug: string }) {
                             "mini-lawn-stage":
                               "Mini Lawn garden stage with pastel balloons, white seating and a paved aisle",
                           }[k] ?? v.name)
-                        : `${v.name} — ${k.replaceAll("-", " ")}`
+                        : ({
+                            "venue-grand": "Aerial view of Mauli Grand Lawn in Wagholi with illuminated stage and wedding seating",
+                            "grand-stage-pink": "Mauli Grand Lawn pink-lit floral stage and rows of white guest chairs",
+                            "grand-stage-blue": "Blue-lit wedding stage and evening seating at Mauli Grand Lawn",
+                            "garden-walkway": "Mauli Lawns garden entrance with illuminated arches and hanging lanterns",
+                            "grand-guest-seating": "Grand Lawn guest seating and dining tables arranged for an evening celebration",
+                          }[k] ?? `${v.name} — ${k.replaceAll("-", " ")}`)
                     }
                   />
                 </figure>

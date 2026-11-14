@@ -8,6 +8,9 @@ import miniLawnDining from "@/assets/mini-lawn-dining.webp";
 import miniLawnStage from "@/assets/mini-lawn-stage.webp";
 
 import heroMain from "@/assets/gallery/venue-gardens-pool.webp";
+import grandStagePink from "@/assets/gallery/grand-stage-pink.webp";
+import grandStageBlue from "@/assets/gallery/grand-stage-blue.webp";
+import grandGuestSeating from "@/assets/gallery/grand-guest-seating.webp";
 import gardenWalkway from "@/assets/gallery/illuminated-garden-walkway.webp";
 import venueGrand from "@/assets/grand-lawn-aerial.webp";
 import frontGate from "@/assets/front-gate.webp";
@@ -35,6 +38,9 @@ export const IMAGES: Record<string, string> = {
   "mini-lawn-stage": miniLawnStage,
   "hero-main": heroMain,
   "garden-walkway": gardenWalkway,
+  "grand-stage-pink": grandStagePink,
+  "grand-stage-blue": grandStageBlue,
+  "grand-guest-seating": grandGuestSeating,
   "venue-grand": venueGrand,
   "front-gate": frontGate,
   "cta-evening": ctaEvening,
@@ -182,7 +188,7 @@ export const seedVenues: Venue[] = [
       "Kitchen Setup",
     ],
     imageKey: "venue-grand",
-    galleryKeys: ["venue-grand", "gallery-stage", "gallery-lighting", "decor-royal", "gallery-dining"],
+    galleryKeys: ["venue-grand", "grand-stage-pink", "grand-stage-blue", "garden-walkway", "grand-guest-seating"],
     faqs: [
       { question: "How many guests can the Grand Lawn host?", answer: "The Grand Lawn hosts 100–700 guests, seated or in flowing layouts." },
       { question: "Is there power backup?", answer: "Yes, a generator provides full power backup throughout your event." },

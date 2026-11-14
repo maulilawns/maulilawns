@@ -72,6 +72,18 @@ function load(): SiteData {
             : item.galleryKeys,
       };
     });
+    // Replace retired sample photographs for returning Grand Lawn visitors.
+    const grandPhotoReplacements: Record<string, string> = {
+      "gallery-stage": "grand-stage-pink",
+      "gallery-lighting": "grand-stage-blue",
+      "decor-royal": "garden-walkway",
+      "gallery-dining": "grand-guest-seating",
+    };
+    parsed.venues = parsed.venues.map((venue) =>
+      venue.id === "v-grand"
+        ? { ...venue, galleryKeys: venue.galleryKeys.map((key) => grandPhotoReplacements[key] ?? key) }
+        : venue,
+    );
     parsed.packages = (parsed.packages ?? seedPackages).map((item) => ({
       ...item,
       imageKey: item.imageKey || seedPackages.find((seed) => seed.id === item.id)?.imageKey || "",
