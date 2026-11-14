@@ -14,7 +14,7 @@ import {
 const facilities = [
   {
     title: "Two Open-air Lawns",
-    description: "Mini Lawn for 50–100 guests and Grand Lawn for 200–700 guests.",
+    description: "Mini Lawn for 50–100 guests and Grand Lawn for 100–700 guests, plus 200 additional floating guests.",
     icon: Trees,
   },
   {
@@ -65,7 +65,7 @@ export function Facilities() {
     <div className="facilities-page">
       <PageIntro
         eyebrow="THOUGHTFUL DETAILS"
-        title="Facilities & Comforts"
+        title="Wedding Lawn Facilities in Wagholi"
         description="Spaces and arrangements that help your celebration flow effortlessly."
       />
       <section className="facilities-grid" aria-label="Venue facilities">

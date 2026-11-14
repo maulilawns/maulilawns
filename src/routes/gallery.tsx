@@ -1,24 +1,18 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { seoHead } from "@/lib/seo";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Gallery, PageIntro } from "@/components/site/pages";
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    meta: [
-      { title: "Gallery | Mauli Lawns" },
-      {
-        name: "description",
-        content: "Explore photographs from Mauli Lawns and our Mini Lawn celebrations.",
-      },
-    ],
-  }),
+  head: () => seoHead("/gallery"),
   component: () => (
     <>
       <PageIntro
         eyebrow="A GLIMPSE OF THE MAGIC"
-        title="Moments, beautifully framed."
-        description="Photographs from our Mini Lawn."
+        title="Mauli Lawns Wedding & Event Gallery"
+        description="Explore real photographs of our Mini Lawn, Grand Lawn and garden celebrations in Wagholi, Pune."
       />
       <section className="section">
         <Gallery />
+        <Link to="/venues" className="text-link">Explore our Mini Lawn and Grand Lawn venues</Link>
       </section>
     </>
   ),

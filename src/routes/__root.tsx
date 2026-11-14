@@ -1,3 +1,4 @@
+import { businessSchema } from "@/lib/seo";
 import { SiteProvider } from "@/data/store";
 import { PublicLayout } from "@/components/site/pages";
 import { MotionConfig } from "framer-motion";
@@ -76,23 +77,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
+      { title: "Page not found | Mauli Lawns" },
+      { name: "robots", content: "noindex, nofollow" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        title: "Mauli Lawns — Premium Wedding & Event Venue in Wagholi, Pune",
-      },
-      {
-        name: "description",
-        content:
-          "Mauli Lawns is a premium open-air wedding and event venue on Wagholi–Lohegaon Road, Pune. Two beautiful lawns for 50–700 guests. Enquire on WhatsApp today.",
-      },
-      { property: "og:title", content: "Mauli Lawns — Where Beautiful Celebrations Begin" },
-      {
-        property: "og:description",
-        content:
-          "Premium wedding & event venue in Wagholi, Pune. Intimate gatherings to grand weddings of 700 guests.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#172B4D" },
     ],
     links: [
@@ -125,20 +112,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": ["LocalBusiness", "EventVenue"],
-              name: "Mauli Lawns",
-              telephone: "+919254245454",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Wagholi-Lohegaon Road, In front of Rohan Abhilasha Society",
-                addressLocality: "Wagholi, Pune",
-                addressRegion: "Maharashtra",
-                postalCode: "412207",
-                addressCountry: "IN",
-              },
-            }),
+            __html: JSON.stringify(businessSchema),
           }}
         />
       </head>

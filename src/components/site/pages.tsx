@@ -345,7 +345,7 @@ export function Home() {
         <div className="event-bento">
           {data.eventCategories.map((e) => (
             <Link key={e.id} to="/events" hash={e.slug} className="img-zoom">
-              <Photo name={e.imageKey} alt={e.name} />
+              <Photo name={e.imageKey} alt={`${e.name} event inspiration at Mauli Lawns in Wagholi, Pune`} />
               <span>
                 <small>MAKE IT MEMORABLE</small>
                 <h3>{e.name}</h3>
@@ -403,7 +403,7 @@ export function Home() {
                 <p>
                   {
                     [
-                      "Find a space that feels right for your occasion and your guest list.",
+                      <>Find a space that feels right for your occasion and your guest list. <Link to="/packages">Explore venue rental and event packages.</Link></>,
                       "Tell us your date, occasion and ideas through our inquiry form.",
                       "Our team confirms availability, inclusions and booking details directly.",
                     ][i]
@@ -425,7 +425,7 @@ export function About() {
     <>
       <PageIntro
         eyebrow="THE MAULI EXPERIENCE"
-        title="A setting for togetherness."
+        title="About Mauli Lawns in Wagholi, Pune"
         description="Beautiful open spaces, thoughtful details and celebrations that feel like you."
       />
       <section className="section story">
@@ -461,7 +461,7 @@ export function Venues() {
     <>
       <PageIntro
         eyebrow="OUR SIGNATURE SPACES"
-        title="Find your kind of beautiful."
+        title="Wedding & Event Lawns in Wagholi"
         description="Intimate or extraordinary. Two open-air lawns for your unique celebration."
       />
       <section className="section">
@@ -497,7 +497,7 @@ export function VenueDetails({ slug }: { slug: string }) {
   return (
     <>
       <section className="detail-hero">
-        <Photo name={v.imageKey} alt={v.name} />
+        <Photo name={v.imageKey} alt={`${v.name} event venue in Wagholi, Pune`} priority />
         <div>
           <p className="eyebrow eyebrow-light">MAULI LAWNS · WAGHOLI</p>
           <h1>{v.name}</h1>
@@ -580,7 +580,7 @@ export function Packages() {
     <>
       <PageIntro
         eyebrow="THOUGHTFULLY PLANNED"
-        title="Your occasion. Your possibilities."
+        title="Wedding Lawn & Event Packages in Wagholi"
         description="Explore venue rentals and sample event concepts. Our team helps you confirm the details."
       />
       <section className="section">
@@ -633,7 +633,7 @@ export function Decor() {
     <>
       <PageIntro
         eyebrow="THE ART OF CELEBRATION"
-        title="Dream in beautiful details."
+        title="Wedding Decor Themes in Wagholi"
         description="A visual moodboard for your celebration. All themes shown are sample concepts; actual photographs and pricing are to be supplied."
       />
       <section className="section decor-grid">
@@ -659,15 +659,15 @@ export function Events() {
   const { data } = useSite();
   return (
     <>
-      <PageIntro eyebrow="A REASON TO COME TOGETHER" title="For all of life's beautiful moments." />
+      <PageIntro eyebrow="A REASON TO COME TOGETHER" title="Weddings & Celebrations in Wagholi, Pune" />
       <section className="section">
         {data.eventCategories.map((e, i) => (
           <article id={e.slug} className={`event-row ${i % 2 ? "reverse" : ""}`} key={e.id}>
-            <Photo name={e.imageKey} alt={e.name} />
+            <Photo name={e.imageKey} alt={`${e.name} event inspiration at Mauli Lawns in Wagholi, Pune`} />
             <div>
               <p className="eyebrow">CELEBRATION / 0{i + 1}</p>
               <h2>{e.name}</h2>
-              <p>{e.blurb}</p>
+              <p>{e.blurb} <Link to="/contact">Contact us to plan your {e.name.toLowerCase()}.</Link></p>
               <EnquireButton interestedIn={e.name} eventType={e.name} />
             </div>
           </article>
@@ -687,7 +687,7 @@ export function Contact() {
     <>
       <PageIntro
         eyebrow="LET'S BEGIN SOMETHING BEAUTIFUL"
-        title="Tell us about your celebration."
+        title="Contact Mauli Lawns for Your Celebration"
         description="Share a few details. We'll help you explore availability and plan the next step."
       />
       <section className="section contact-layout">

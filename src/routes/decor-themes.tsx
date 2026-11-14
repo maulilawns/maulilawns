@@ -1,15 +1,7 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { seoHead } from "@/lib/seo";
+import { createFileRoute } from "@tanstack/react-router";
 import { Decor } from "@/components/site/pages";
 export const Route = createFileRoute("/decor-themes")({
-  head: () => ({
-    meta: [
-      { title: "decor-themes | Mauli Lawns, Wagholi Pune" },
-      {
-        name: "description",
-        content:
-          "Explore decor-themes at Mauli Lawns, premium wedding and event venue in Wagholi, Pune.",
-      },
-    ],
-  }),
+  head: () => seoHead("/decor-themes"),
   component: Decor,
 });

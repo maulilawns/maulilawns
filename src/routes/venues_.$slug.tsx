@@ -1,16 +1,12 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { seoHead } from "@/lib/seo";
+import { notFound } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { VenueDetails } from "@/components/site/pages";
 export const Route = createFileRoute("/venues_/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug === "mini-lawn" ? "Mini Lawn" : "Grand Lawn"} | Mauli Lawns` },
-      {
-        name: "description",
-        content:
-          "Discover venue capacity, facilities and WhatsApp inquiries at Mauli Lawns.",
-      },
-    ],
-  }),
+  beforeLoad: ({ params }) => {
+    if (!["mini-lawn", "grand-lawn"].includes(params.slug)) throw notFound();
+  },
+  head: ({ params }) => seoHead(`/venues/${params.slug}`),
   component: Details,
 });
 function Details() {
