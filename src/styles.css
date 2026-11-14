@@ -598,10 +598,8 @@ a:focus-visible {
   object-fit: cover;
 }
 .story > img.about-story-photo {
-  height: auto;
-  aspect-ratio: 2400 / 1348;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: 60% center;
   align-self: center;
 }
 .venues-section {
