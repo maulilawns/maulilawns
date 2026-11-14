@@ -22,6 +22,7 @@ import { Footer } from "./footer";
 import { EnquireButton, FloatingWhatsApp, StickyMobileEnquiry } from "./whatsapp";
 import { BotanicalBranch, Reveal, SectionHeading } from "./reveal";
 import { BREADCRUMB_ART } from "@/data/breadcrumb-art";
+import logo from "@/assets/logo.png";
 
 export function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -295,9 +296,7 @@ export function Home() {
           <Photo name="venue-mini" alt="Intimate garden lawn with floral decor" />
           <Photo name="mini-lawn-stage" alt="Mauli Mini Lawn stage with pastel balloon decor and garden seating" />
           <span className="photo-seal">
-            Made for
-            <br />
-            <em>your moments</em>
+            <img src={logo} alt="Mauli Lawns logo" loading="lazy" decoding="async" />
           </span>
         </div>
         <Reveal>

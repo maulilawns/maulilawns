@@ -576,8 +576,11 @@ a:focus-visible {
   font-size: 23px;
   line-height: 1.1;
 }
-.photo-seal em {
-  color: #a8884d;
+.photo-seal > img {
+  width: 78%;
+  height: 78%;
+  margin: auto;
+  object-fit: contain;
 }
 .story-highlights {
   display: flex;
