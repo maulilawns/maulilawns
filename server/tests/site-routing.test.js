@@ -34,3 +34,21 @@ test("unknown API and upload URLs keep API 404 responses instead of HTML", async
   for (const path of ["/api", "/api/missing?x=1", "/uploads/missing.webp"])
     assert.equal((await request(site).get(path).expect(404)).body.error, "Endpoint not found.");
 });
+
+test("live public URLs show Coming Soon while local development remains available", async () => {
+  for (const host of ["maulilawns.com", "www.maulilawns.com"]) {
+    for (const path of ["/", "/about", "/venues/grand-lawn", "/gallery", "/sitemap.xml"]) {
+      const response = await request(site).get(path).set("Host", host).expect(503);
+      assert.match(response.text, /Mauli Lawns<br><em>Coming Soon/);
+      assert.equal(response.headers["retry-after"], "3600");
+      assert.equal(response.headers["cache-control"], "no-store");
+    }
+    for (const path of ["/admin/login", "/assets/site.js", "/coming-soon-logo.png"]) {
+      await request(site).get(path).set("Host", host).expect(200);
+    }
+    await request(site).get("/api/admin/dashboard/stats").set("Host", host).expect(401);
+  }
+  await request(site).get("/about").set("Host", "localhost:8080").expect(200);
+  const launched = createSiteHandler(api, (_req, res) => res.end("Launched"), { comingSoon: false });
+  assert.equal((await request(launched).get("/").set("Host", "maulilawns.com").expect(200)).text, "Launched");
+});
