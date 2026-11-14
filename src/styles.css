@@ -955,16 +955,16 @@ a:focus-visible {
   position: relative;
   z-index: 1;
 }
-.intro-floral {
+.intro-mandap {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: min(68%, 900px);
+  width: min(36%, 480px);
   height: auto;
   max-height: 100%;
   object-fit: contain;
   object-position: right bottom;
-  opacity: 0.55;
+  opacity: 0.28;
   pointer-events: none;
   user-select: none;
 }
@@ -1623,9 +1623,9 @@ nav[aria-label="Primary"] a {
   .page-intro h1 {
     font-size: 47px;
   }
-  .intro-floral {
-    width: 100%;
-    opacity: 0.25;
+  .intro-mandap {
+    width: 60%;
+    opacity: 0.16;
   }
   .page-intro > p:last-of-type {
     font-size: 12px;
