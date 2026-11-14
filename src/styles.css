@@ -434,9 +434,12 @@ a:focus-visible {
   object-position: center center;
 }
 .hero-shade {
-  background:
-    linear-gradient(90deg, rgb(6 21 31 / 78%) 0%, rgb(6 21 31 / 45%) 38%, transparent 72%),
-    linear-gradient(0deg, rgb(6 21 31 / 45%), transparent 20%);
+  background: linear-gradient(
+    90deg,
+    rgb(6 21 31 / 65%) 0%,
+    rgb(6 21 31 / 35%) 30%,
+    transparent 58%
+  );
 }
 .hero-content {
   position: relative;
@@ -486,6 +489,7 @@ a:focus-visible {
   align-items: center;
   font-size: 9px;
   letter-spacing: 0.2em;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 80%);
 }
 .hero-bottom > span,
 .hero-bottom > a {
