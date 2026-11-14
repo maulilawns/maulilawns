@@ -680,6 +680,9 @@ export function Events() {
 export function Contact() {
   const { data } = useSite();
   const [ready, setReady] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState("");
   return (
     <>
       <PageIntro
@@ -707,9 +710,12 @@ export function Contact() {
         </div>
         <form
           className="inquiry-form"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            const f = new FormData(e.currentTarget);
+            if (sending) return;
+            const form = e.currentTarget;
+            const f = new FormData(form);
+            if (f.get("botcheck")) return;
             const href = whatsappLink(
               data.settings.whatsapp,
               `${f.get("venue")} | Name: ${f.get("name")} | Phone: ${f.get("phone")} | Notes: ${f.get("notes")}`,
@@ -720,9 +726,30 @@ export function Contact() {
               },
             );
             setReady(href);
-            window.open(href, "_blank", "noopener,noreferrer");
+            setSending(true);
+            setSent(false);
+            setError("");
+            f.set("access_key", "7a7fd86f-7490-456e-b057-e25b3d6c6d70");
+            f.set("subject", "New event enquiry — Mauli Lawns");
+            f.set("from_name", "Mauli Lawns Website");
+            try {
+              const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: f,
+                signal: AbortSignal.timeout(20000),
+              });
+              const result = await response.json();
+              if (!response.ok || !result.success) throw new Error("Submission failed");
+              setSent(true);
+              form.reset();
+            } catch {
+              setError("We couldn't confirm your enquiry was sent. Please try again or contact us on WhatsApp.");
+            } finally {
+              setSending(false);
+            }
           }}
         >
+          <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" style={{ display: "none" }} aria-hidden="true" />
           <label>
             Your name
             <input name="name" required autoComplete="name" placeholder="Full name" />
@@ -767,12 +794,14 @@ export function Contact() {
             Anything you'd like us to know?
             <textarea name="notes" rows={3} placeholder="Share your ideas…" />
           </label>
-          <button className="button full" type="submit">
-            Send Inquiry on WhatsApp <ArrowRight size={16} />
+          <button className="button full" type="submit" disabled={sending} aria-busy={sending}>
+            {sending ? "Sending enquiry…" : "Send Enquiry"} <ArrowRight size={16} />
           </button>
-          {ready && (
+          {sent && <p className="full" role="status">Thank you! Your enquiry has been sent. Our team will contact you to discuss your celebration.</p>}
+          {error && <p className="full" role="alert">{error}</p>}
+          {ready && !sending && (
             <p className="full" role="status">
-              Your inquiry is ready.{" "}
+              Prefer to chat?{" "}
               <a className="text-link" href={ready} target="_blank" rel="noreferrer">
                 Continue in WhatsApp ↗
               </a>
@@ -805,7 +834,7 @@ export function Privacy() {
     {
       id: "external-services",
       title: "External services & links",
-      text: "Some features connect to other services. WhatsApp handles messages sent through its platform, and embedded Google Maps provides location information. These providers process information according to their own privacy policies. Links to external websites take you to services managed by their respective operators.",
+      text: "Contact form enquiries are processed by Web3Forms and delivered to our team by email. WhatsApp handles messages sent through its platform, and embedded Google Maps provides location information. These providers process information according to their own privacy policies. Links to external websites take you to services managed by their respective operators.",
     },
     {
       id: "photographs",
