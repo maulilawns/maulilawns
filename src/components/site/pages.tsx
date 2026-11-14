@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowDown,
@@ -21,7 +21,7 @@ import { Navbar } from "./navbar";
 import { Footer } from "./footer";
 import { EnquireButton, FloatingWhatsApp, StickyMobileEnquiry } from "./whatsapp";
 import { BotanicalBranch, Reveal, SectionHeading } from "./reveal";
-import breadcrumbMandap from "@/assets/breadcrumb-mandap.webp";
+import { BREADCRUMB_ART } from "@/data/breadcrumb-art";
 
 export function PublicLayout({ children }: { children: ReactNode }) {
   return (
@@ -68,12 +68,14 @@ export function PageIntro({
   eyebrow: string;
   description?: string;
 }) {
+  const path = useRouterState({ select: (state) => state.location.pathname });
+  const artwork = BREADCRUMB_ART[path.replace(/\/$/, "")];
   return (
     <header className="page-intro">
       <p className="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       {description && <p>{description}</p>}
-      <img src={breadcrumbMandap} className="intro-mandap" alt="" aria-hidden="true" width={1000} height={755} decoding="async" />
+      {artwork && <img src={artwork.src} className="intro-artwork" alt="" aria-hidden="true" width={artwork.width} height={artwork.height} decoding="async" />}
     </header>
   );
 }

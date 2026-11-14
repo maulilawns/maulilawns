@@ -955,7 +955,7 @@ a:focus-visible {
   position: relative;
   z-index: 1;
 }
-.intro-mandap {
+.intro-artwork {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1623,7 +1623,7 @@ nav[aria-label="Primary"] a {
   .page-intro h1 {
     font-size: 47px;
   }
-  .intro-mandap {
+  .intro-artwork {
     width: 60%;
     opacity: 0.16;
   }
