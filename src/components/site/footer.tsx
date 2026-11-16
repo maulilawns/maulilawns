@@ -7,7 +7,8 @@ import { useSite, whatsappLink } from "@/data/store";
 
 const SOCIALS = [
   {
-    label: "Instagram (coming soon)",
+    label: "Instagram",
+    href: "https://www.instagram.com/mauli_lawns54?mdxt=c3g5eWJrbHY4bm9x&utm_source=qr",
     svg: (
       <svg
         viewBox="0 0 24 24"
@@ -64,14 +65,26 @@ export function Footer() {
             celebrations begin, from intimate gatherings to grand weddings.
           </p>
           <div className="mt-4 flex gap-3">
-            {SOCIALS.map(({ svg, label }) => (
+            {SOCIALS.map((social) => social.href ? (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={social.label}
+                aria-label={social.label}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-ivory/20 text-ivory/70 transition-colors hover:border-gold hover:text-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+              >
+                {social.svg}
+              </a>
+            ) : (
               <span
-                key={label}
-                title={label}
-                aria-label={label}
+                key={social.label}
+                title={social.label}
+                aria-label={social.label}
                 className="flex h-8 w-8 cursor-default items-center justify-center rounded-full border border-ivory/20 text-ivory/70 transition-colors hover:border-gold hover:text-gold"
               >
-                {svg}
+                {social.svg}
               </span>
             ))}
           </div>
