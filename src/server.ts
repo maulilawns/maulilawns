@@ -1,4 +1,6 @@
 import "./lib/error-capture";
+import { comingSoonHtml } from "../server/coming-soon.js";
+import { shouldShowComingSoon } from "../server/request-handler.js";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
@@ -46,6 +48,17 @@ function isH3SwallowedErrorBody(body: string): boolean {
 
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const url = new URL(request.url);
+    if (shouldShowComingSoon(url.hostname, url.pathname)) {
+      return new Response(request.method === "HEAD" ? null : comingSoonHtml, {
+        status: 503,
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "no-store",
+          "retry-after": "3600",
+        },
+      });
+    }
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
