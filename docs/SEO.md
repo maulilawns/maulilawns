@@ -30,4 +30,4 @@ Search ranking and indexing are controlled by search engines and are not guarant
 
 ## Temporary Coming Soon mode
 
-Public requests to maulilawns.com and www.maulilawns.com currently display the Mauli Lawns Coming Soon page. Existing public subpages are also covered. Local development, admin access, API endpoints and image assets remain available. The temporary response uses HTTP 503, Retry-After and no-store headers. To launch the complete website again, set COMING_SOON=false in the hosting environment and restart the application. Remove that override or set COMING_SOON=true to restore the coming-soon screen.
+Public requests to maulilawns.com and www.maulilawns.com serve the complete website by default. To temporarily show the Coming Soon page, set COMING_SOON=true in the hosting environment and restart the application. Remove the setting or set COMING_SOON=false to serve the website again.

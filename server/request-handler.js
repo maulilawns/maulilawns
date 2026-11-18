@@ -1,6 +1,6 @@
 import { comingSoonHtml } from "./coming-soon.js";
 
-export function shouldShowComingSoon(hostname, pathname, enabled = process.env.COMING_SOON !== "false") {
+export function shouldShowComingSoon(hostname, pathname, enabled = process.env.COMING_SOON === "true") {
   const host = hostname.split(":")[0].toLowerCase();
   const isLiveDomain = host === "maulilawns.com" || host === "www.maulilawns.com";
   const servicePath = /^\/(?:api|uploads|health|admin|assets)(?:\/|$)/.test(pathname)
@@ -9,7 +9,7 @@ export function shouldShowComingSoon(hostname, pathname, enabled = process.env.C
 }
 
 /** Keep API/upload requests in Express and render website requests with Nitro. */
-export function createSiteHandler(api, frontend, { comingSoon = process.env.COMING_SOON !== "false" } = {}) {
+export function createSiteHandler(api, frontend, { comingSoon = process.env.COMING_SOON === "true" } = {}) {
   return (req, res) => {
     const pathname = (req.url || "/").split("?")[0];
     if (shouldShowComingSoon(req.headers.host || "", pathname, comingSoon)) {

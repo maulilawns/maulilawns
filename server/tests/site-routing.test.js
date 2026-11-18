@@ -35,13 +35,11 @@ test("unknown API and upload URLs keep API 404 responses instead of HTML", async
     assert.equal((await request(site).get(path).expect(404)).body.error, "Endpoint not found.");
 });
 
-test("live public URLs show Coming Soon while local development remains available", async () => {
+test("live public URLs serve the website by default and can opt into Coming Soon", async () => {
   for (const host of ["maulilawns.com", "www.maulilawns.com"]) {
     for (const path of ["/", "/about", "/venues/grand-lawn", "/gallery", "/sitemap.xml"]) {
-      const response = await request(site).get(path).set("Host", host).expect(503);
-      assert.match(response.text, /Mauli Lawns<br><em>Coming Soon/);
-      assert.equal(response.headers["retry-after"], "3600");
-      assert.equal(response.headers["cache-control"], "no-store");
+      const response = await request(site).get(path).set("Host", host).expect(200);
+      assert.match(response.text, /Mauli website/);
     }
     for (const path of ["/admin/login", "/assets/site.js", "/coming-soon-logo.png", "/favicon.ico", "/favicon.png", "/favicon-32x32.png", "/apple-touch-icon.png"]) {
       await request(site).get(path).set("Host", host).expect(200);
@@ -49,6 +47,8 @@ test("live public URLs show Coming Soon while local development remains availabl
     await request(site).get("/api/admin/dashboard/stats").set("Host", host).expect(401);
   }
   await request(site).get("/about").set("Host", "localhost:8080").expect(200);
+  const comingSoon = createSiteHandler(api, (_req, res) => res.end("Launched"), { comingSoon: true });
+  assert.match((await request(comingSoon).get("/").set("Host", "maulilawns.com").expect(503)).text, /Coming Soon/);
   const launched = createSiteHandler(api, (_req, res) => res.end("Launched"), { comingSoon: false });
   assert.equal((await request(launched).get("/").set("Host", "maulilawns.com").expect(200)).text, "Launched");
 });
