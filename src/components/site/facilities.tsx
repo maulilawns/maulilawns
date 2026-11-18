@@ -18,7 +18,7 @@ const facilities = [
     icon: Trees,
   },
   {
-    title: "500 sq ft Stage",
+    title: "800 sq ft Stage",
     description: "A spacious stage included in the Grand Lawn package.",
     icon: Maximize,
   },

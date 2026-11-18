@@ -176,10 +176,10 @@ export const seedVenues: Venue[] = [
     description:
       "A magnificent open-air lawn for grand weddings, receptions and large gatherings — with a stage, sound, changing rooms and everything your celebration needs.",
     longDescription:
-      "Mauli Grand Lawn is our flagship space — a sweeping green lawn built for weddings that fill the evening with music, light and laughter. It features a 500 sq. ft. stage, a full sound setup with four speakers and two microphones, two changing rooms, chairs and tables for large guest lists, and dependable generator power backup.",
+      "Mauli Grand Lawn is our flagship space — a sweeping green lawn built for weddings that fill the evening with music, light and laughter. It features an 800 sq. ft. stage, a full sound setup with four speakers and two microphones, two changing rooms, chairs and tables for large guest lists, and dependable generator power backup.",
     idealFor: ["Grand Weddings", "Receptions", "Corporate Events", "Large Gatherings"],
     amenities: [
-      "500 sq. ft. Stage",
+      "800 sq. ft. Stage",
       "Four Speakers and Two Microphones",
       "Two Changing Rooms",
       "Chairs and Tables",
@@ -224,7 +224,7 @@ export const seedPackages: Package[] = [
     inclusions: [
       "Guest capacity: 100–700 + 200 additional floating guests",
       "Lawn rental (timings confirmed by team)",
-      "500 sq. ft. stage",
+      "800 sq. ft. stage",
       "4 speakers & 2 microphones",
       "Two changing rooms",
       "Chairs and tables",
@@ -395,7 +395,7 @@ export const seedSettings: SiteSettings = {
 export const WHY_CHOOSE = [
   { title: "Beautiful Open-Air Venue", description: "Manicured green lawns under open Pune skies, ready for any celebration." },
   { title: "Spacious Parking", description: "Ample on-site parking keeps arrivals and departures effortless." },
-  { title: "Stage and Sound Facilities", description: "A 500 sq. ft. stage with speakers and microphones ready for your programme." },
+  { title: "Stage and Sound Facilities", description: "An 800 sq. ft. stage with speakers and microphones ready for your programme." },
   { title: "Bride and Groom Changing Rooms", description: "Private, comfortable changing rooms for the couple and family." },
   { title: "Power Backup", description: "Generator backup keeps your celebration bright, whatever happens." },
   { title: "Kitchen Area", description: "On-site kitchen setup that makes catering arrangements simple." },

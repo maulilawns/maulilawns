@@ -40,7 +40,7 @@ export const SEO_PAGES: Record<string, { title: string; description: string }> =
   },
   "/venues/grand-lawn": {
     "title": "Grand Wedding Lawn in Wagholi, Pune | Mauli Lawns",
-    "description": "Explore Mauli Grand Lawn in Wagholi, Pune, for 100–700 guests plus 200 floating guests, with a 500 sq. ft. stage, sound, changing rooms and power backup."
+    "description": "Explore Mauli Grand Lawn in Wagholi, Pune, for 100–700 guests plus 200 floating guests, with an 800 sq. ft. stage, sound, changing rooms and power backup."
   },
   "/decor-themes": {
     "title": "Wedding Decor Themes in Wagholi, Pune | Mauli Lawns",
