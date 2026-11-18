@@ -152,7 +152,7 @@ export const seedVenues: Venue[] = [
     description:
       "An intimate, charming and private green space designed for beautiful celebrations with your closest family and friends.",
     longDescription:
-      "Mauli Mini Lawn is a warm, private green corner of the venue — perfect when the guest list is personal and every face matters. The lawn holds elegant seating for up to 100 guests, with a decorated stage area, gentle lighting and a layout that keeps everyone close to the celebration.",
+      "Mauli Mini Lawn is a warm, private green corner of the venue — perfect when the guest list is personal and every face matters. The lawn holds elegant seating for up to 100 guests, with gentle lighting and a layout that keeps everyone close to the celebration.",
     idealFor: ["Birthdays", "Baby Showers", "Engagements", "Family Gatherings"],
     amenities: ["Private open-air lawn", "Space for 50–100 guests", "Additional facilities confirmed on inquiry"],
     imageKey: "venue-mini",
@@ -205,7 +205,6 @@ export const seedPackages: Package[] = [
     description: "Venue rental of the intimate Mauli Mini Lawn for your celebration.",
     inclusions: [
       "Lawn rental (timings confirmed by team)",
-      "500 sq. ft. stage",
       "1 speaker & 1 microphone",
       "Two changing rooms",
       "Chairs and tables",

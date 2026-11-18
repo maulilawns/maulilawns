@@ -36,7 +36,7 @@ export const SEO_PAGES: Record<string, { title: string; description: string }> =
   },
   "/venues/mini-lawn": {
     "title": "Mini Lawn for Small Events in Wagholi | Mauli Lawns",
-    "description": "Discover Mauli Mini Lawn in Wagholi, Pune, for 50–100 guests. Plan birthdays, engagements and family functions with a stage, sound and changing rooms."
+    "description": "Discover Mauli Mini Lawn in Wagholi, Pune, for 50–100 guests. Plan birthdays, engagements and family functions in a warm, private green setting."
   },
   "/venues/grand-lawn": {
     "title": "Grand Wedding Lawn in Wagholi, Pune | Mauli Lawns",
