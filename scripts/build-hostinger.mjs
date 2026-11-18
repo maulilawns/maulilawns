@@ -8,7 +8,9 @@ const result = spawnSync(process.execPath, [vite, "build"], {
   stdio: "inherit",
   env: {
     ...process.env,
-    NITRO_PRESET: site ? "node-middleware" : "node-server",
+    // Nitro v3 preset names use underscores. The old hyphenated name falls
+    // back to a standalone server output, which server.js cannot mount.
+    NITRO_PRESET: site ? "node_middleware" : "node_server",
     ...(site ? { VITE_API_BASE_URL: "" } : {}),
   },
 });

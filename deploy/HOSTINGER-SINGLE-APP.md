@@ -29,7 +29,7 @@ The variable is only consumed by the install hook; it does not rebuild on reques
 Without this variable, normal installs (including other deployment platforms) skip this hook.
 If using a separate explicit build command instead, leave the variable unset to avoid building twice.
 
-The build uses Nitro's node-middleware preset; the runtime mounts this alongside
+The build uses Nitro's `node_middleware` preset; the runtime mounts this alongside
 Express. The regular `npm run build` retains the existing platform-specific target.
 The API-only entry remains `server/index.js` for local or separate API deployments.
 
