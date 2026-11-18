@@ -25,9 +25,11 @@ MAULI_BUILD_SITE=true
 Hostinger runs npm install. The opt-in postinstall hook then runs the website build
 using the already-installed Vite/Nitro dependencies. The repository .npmrc includes
 dev dependencies needed for that build. No manual build-command field is needed.
-The variable is only consumed by the install hook; it does not rebuild on requests/startup.
-Without this variable, normal installs (including other deployment platforms) skip this hook.
-If using a separate explicit build command instead, leave the variable unset to avoid building twice.
+This also makes the default `npm run build` select the Hostinger middleware target when
+Hostinger invokes it automatically. The install hook may build it as well; neither path
+builds on requests/startup. Without this variable, normal builds retain the platform target.
+If using a separate explicit `npm run build:hostinger:site` build command, leave the variable
+unset to avoid building twice.
 
 The build uses Nitro's `node_middleware` preset; the runtime mounts this alongside
 Express. The regular `npm run build` retains the existing platform-specific target.
