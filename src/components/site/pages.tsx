@@ -432,9 +432,9 @@ export function About() {
       />
       <section className="section story">
         <Photo
-          name="garden-walkway"
+          name="venue-drone-day"
           className="about-story-photo"
-          alt="Mauli Lawns garden walkway in Wagholi, Pune, with illuminated floral arches, hanging lanterns and lush greenery"
+          alt="Aerial drone view of Mauli Lawns in Wagholi, Pune, showing the venue, gardens and surrounding property"
         />
         <div>
           <p className="eyebrow">OUR STORY</p>
