@@ -66,6 +66,21 @@ function load(): SiteData {
       return {
         ...item,
         imageKey: item.imageKey || seed?.imageKey || "",
+        longDescription:
+          item.id === "v-grand"
+            ? (item.longDescription || seed?.longDescription || "").replace(
+                /500\s*sq\.?\s*ft\.?\s*stage/gi,
+                "800 sq. ft. stage",
+              )
+            : item.longDescription,
+        amenities:
+          item.id === "v-grand"
+            ? (item.amenities ?? seed?.amenities ?? []).map((amenity) =>
+                /500\s*sq\.?\s*ft\.?\s*stage/i.test(amenity)
+                  ? "800 sq. ft. Stage"
+                  : amenity,
+              )
+            : item.amenities,
         galleryKeys:
           item.id === "v-grand" && !item.galleryKeys.length
             ? (seed?.galleryKeys ?? [])
@@ -87,6 +102,14 @@ function load(): SiteData {
     parsed.packages = (parsed.packages ?? seedPackages).map((item) => ({
       ...item,
       imageKey: item.imageKey || seedPackages.find((seed) => seed.id === item.id)?.imageKey || "",
+      inclusions:
+        item.id === "p-grand-rental"
+          ? item.inclusions.map((inclusion) =>
+              /500\s*sq\.?\s*ft\.?\s*stage/i.test(inclusion)
+                ? "800 sq. ft. stage"
+                : inclusion,
+            )
+          : item.inclusions,
     }));
     parsed.decorThemes = (parsed.decorThemes ?? seedDecorThemes).map((item) => ({
       ...item,
