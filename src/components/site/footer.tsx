@@ -25,7 +25,8 @@ const SOCIALS = [
     ),
   },
   {
-    label: "Facebook (coming soon)",
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1AA5xUqaSZ/?mibextid=wwXIfr",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
         <path
@@ -36,7 +37,8 @@ const SOCIALS = [
     ),
   },
   {
-    label: "YouTube (coming soon)",
+    label: "YouTube",
+    href: "https://www.youtube.com/@MauliLawns",
     svg: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
         <path d="M21.6 7.2a2.6 2.6 0 0 0-1.8-1.9C18.2 5 12 5 12 5s-6.2 0-7.8.3A2.6 2.6 0 0 0 2.4 7.2 27 27 0 0 0 2 12a27 27 0 0 0 .4 4.8 2.6 2.6 0 0 0 1.8 1.9c1.6.3 7.8.3 7.8.3s6.2 0 7.8-.3a2.6 2.6 0 0 0 1.8-1.9A27 27 0 0 0 22 12a27 27 0 0 0-.4-4.8zM10 15.2V8.8L15.5 12 10 15.2z" />
